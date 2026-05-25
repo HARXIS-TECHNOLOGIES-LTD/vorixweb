@@ -611,15 +611,36 @@ function Footer() {
               through verified listings and secure payment systems.
             </p>
             <div className="flex gap-3">
-              {[Instagram, Twitter, Linkedin, MessageCircle].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="size-9 rounded-lg bg-white/10 hover:bg-accent flex items-center justify-center transition-colors"
-                >
-                  <Icon className="size-4" />
-                </a>
-              ))}
+              <a
+                href="https://x.com/Vorixtechnology"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="size-9 rounded-lg bg-white/10 hover:bg-accent flex items-center justify-center transition-colors"
+                aria-label="X (Twitter)"
+              >
+                <Twitter className="size-4" />
+              </a>
+              <a
+                href="#"
+                className="size-9 rounded-lg bg-white/10 hover:bg-accent flex items-center justify-center transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram className="size-4" />
+              </a>
+              <a
+                href="#"
+                className="size-9 rounded-lg bg-white/10 hover:bg-accent flex items-center justify-center transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="size-4" />
+              </a>
+              <a
+                href="#"
+                className="size-9 rounded-lg bg-white/10 hover:bg-accent flex items-center justify-center transition-colors"
+                aria-label="WhatsApp"
+              >
+                <MessageCircle className="size-4" />
+              </a>
             </div>
           </div>
           {cols.map((c) => (
