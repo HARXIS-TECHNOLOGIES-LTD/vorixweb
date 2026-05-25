@@ -29,6 +29,8 @@ import {
   Linkedin,
   Twitter,
   MessageCircle,
+  ClipboardList,
+  ExternalLink,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
