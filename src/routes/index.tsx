@@ -1,5 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import dashboardImg from "@/assets/vorix-dashboard.jpg";
+import logo from "@/assets/vorix-logo.png";
+
+function Wordmark({ className = "" }: { className?: string }) {
+  return (
+    <a href="#" className={`flex items-center gap-2 ${className}`}>
+      <img src={logo} alt="VORIX" className="h-7 w-auto" />
+      <span className="text-xl font-extrabold tracking-tighter uppercase">Vorix</span>
+    </a>
+  );
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,9 +36,7 @@ function Nav() {
     <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <div className="flex items-center gap-8">
-          <a href="#" className="text-xl font-extrabold tracking-tighter uppercase">
-            Vorix
-          </a>
+          <Wordmark />
           <div className="hidden md:flex gap-6 text-sm font-medium text-muted-foreground">
             <a href="#platform" className="hover:text-foreground transition-colors">
               Platform
@@ -387,9 +395,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-12 mb-16">
           <div>
-            <span className="text-xl font-extrabold tracking-tighter uppercase mb-4 block">
-              Vorix
-            </span>
+            <Wordmark className="mb-4" />
             <p className="text-sm text-muted-foreground leading-relaxed mb-6">
               Building the future of African property infrastructure through AI and trust.
             </p>
