@@ -660,6 +660,7 @@ function Index() {
         <Featured />
         <Why />
         <Landlord />
+        <Survey />
         <Waitlist />
       </main>
       <Footer />
