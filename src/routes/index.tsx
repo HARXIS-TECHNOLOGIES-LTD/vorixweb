@@ -25,7 +25,6 @@ import {
   Ruler,
   Check,
   ArrowRight,
-  Instagram,
   Linkedin,
   Twitter,
   MessageCircle,
