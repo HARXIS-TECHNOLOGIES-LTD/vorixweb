@@ -29,6 +29,8 @@ import {
   Linkedin,
   Twitter,
   MessageCircle,
+  ClipboardList,
+  ExternalLink,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -487,6 +489,60 @@ function Landlord() {
   );
 }
 
+/* ───────────────── SURVEY ───────────────── */
+function Survey() {
+  return (
+    <section className="py-20 md:py-24 bg-surface">
+      <div className="max-w-4xl mx-auto px-6">
+        <div className="bg-card border border-border rounded-2xl p-8 md:p-12 shadow-card relative overflow-hidden">
+          <div className="absolute top-0 right-0 size-32 bg-accent-soft/40 rounded-bl-full" />
+          <div className="relative">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="inline-flex items-center gap-1.5 bg-accent-soft text-accent text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full">
+                <GraduationCap className="size-3.5" />
+                LASU Students
+              </span>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4 tracking-tight">
+              Help Shape VORIX for LASU
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-6 max-w-2xl">
+              We are building VORIX to improve how student accommodation works around LASU and its environment. Our goal is to create a more organized and trusted system where verified agents can easily connect with serious student renters — without the usual stress of scattered communication and back-and-forth.
+            </p>
+            <ul className="grid sm:grid-cols-3 gap-4 mb-8">
+              {[
+                "Agents get better visibility",
+                "Listings reach the right audience faster",
+                "Transactions become more structured",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/80">
+                  <span className="size-5 rounded-full bg-accent/10 text-accent flex items-center justify-center shrink-0 mt-0.5">
+                    <Check className="size-3" />
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <p className="text-sm text-muted-foreground mb-6">
+              Right now, we are gathering insights from both students and agents to build it the right way. Your experience in this space is valuable, and we would love to carry you along as one of the early users on the platform.
+            </p>
+            <a
+              href="https://vorix-survey.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-6 py-3.5 rounded-lg hover:opacity-90 transition-opacity"
+            >
+              <ClipboardList className="size-4" />
+              Take the Survey
+              <ExternalLink className="size-3.5 opacity-70" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ───────────────── WAITLIST ───────────────── */
 function Waitlist() {
   return (
@@ -604,6 +660,7 @@ function Index() {
         <Featured />
         <Why />
         <Landlord />
+        <Survey />
         <Waitlist />
       </main>
       <Footer />
