@@ -36,9 +36,7 @@ function Nav() {
     <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <div className="flex items-center gap-8">
-          <a href="#" className="text-xl font-extrabold tracking-tighter uppercase">
-            Vorix
-          </a>
+          <Wordmark />
           <div className="hidden md:flex gap-6 text-sm font-medium text-muted-foreground">
             <a href="#platform" className="hover:text-foreground transition-colors">
               Platform
