@@ -1,5 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import dashboardImg from "@/assets/vorix-dashboard.jpg";
+import logo from "@/assets/vorix-logo.png";
+
+function Wordmark({ className = "" }: { className?: string }) {
+  return (
+    <a href="#" className={`flex items-center gap-2 ${className}`}>
+      <img src={logo} alt="VORIX" className="h-7 w-auto" />
+      <span className="text-xl font-extrabold tracking-tighter uppercase">Vorix</span>
+    </a>
+  );
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
