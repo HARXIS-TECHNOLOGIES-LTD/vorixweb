@@ -395,9 +395,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-12 mb-16">
           <div>
-            <span className="text-xl font-extrabold tracking-tighter uppercase mb-4 block">
-              Vorix
-            </span>
+            <Wordmark className="mb-4" />
             <p className="text-sm text-muted-foreground leading-relaxed mb-6">
               Building the future of African property infrastructure through AI and trust.
             </p>
