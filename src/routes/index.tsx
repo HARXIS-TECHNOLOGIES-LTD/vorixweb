@@ -4,6 +4,8 @@ import prop1 from "@/assets/prop-1.jpg";
 import prop2 from "@/assets/prop-2.jpg";
 import prop3 from "@/assets/prop-3.jpg";
 import prop4 from "@/assets/prop-4.jpg";
+import mockupChat from "@/assets/mockup-chat.png";
+import mockupHome from "@/assets/mockup-home.png";
 import {
   Search,
   MapPin,
@@ -39,6 +41,18 @@ import {
   Compass,
   Target,
   Telescope,
+  Rocket,
+  Mail,
+  Handshake,
+  MessageSquare,
+  Smartphone,
+  Zap,
+  XCircle,
+  Tag,
+  Footprints,
+  MessageCircleWarning,
+  ShieldAlert,
+  Sparkle,
 } from "lucide-react";
 
 
@@ -924,6 +938,280 @@ function Footer() {
   );
 }
 
+/* ───────────────── CTA SECTION ───────────────── */
+function CTASection() {
+  const actions = [
+    {
+      icon: Rocket,
+      label: "Join Waitlist",
+      title: "Join Waitlist",
+      desc: "Get early access to VORIX updates, platform launches, and upcoming opportunities.",
+      href: "#waitlist",
+      accent: "from-primary to-accent",
+    },
+    {
+      icon: Users,
+      label: "Join Community",
+      title: "Join Community",
+      desc: "Become part of the growing VORIX community and follow our journey in real time.",
+      href: "https://chat.whatsapp.com/IC1tNbguLmx6ZgO7j09r7W",
+      accent: "from-emerald-500 to-teal-500",
+    },
+    {
+      icon: ClipboardList,
+      label: "Take Survey",
+      title: "Take Survey",
+      desc: "Share your accommodation experience and help us improve the future of housing.",
+      href: "https://vorix-survey.netlify.app/",
+      accent: "from-amber-500 to-orange-500",
+    },
+    {
+      icon: Handshake,
+      label: "Become a Partner",
+      title: "Become a Partner",
+      desc: "Interested in collaborating, supporting, or working with VORIX? Let's connect.",
+      href: "mailto:Vorixconnectltd@gmail.com?subject=VORIX%20Partnership",
+      accent: "from-fuchsia-500 to-pink-500",
+    },
+    {
+      icon: Mail,
+      label: "Contact Team",
+      title: "Contact Team",
+      desc: "Reach out directly to the VORIX team for inquiries, support, or opportunities.",
+      href: "mailto:Vorixconnectltd@gmail.com",
+      accent: "from-sky-500 to-indigo-500",
+    },
+  ];
+
+  return (
+    <section id="join" className="relative py-24 px-6 overflow-hidden bg-gradient-to-b from-background via-foreground/[0.02] to-background">
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[140px]" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[120px]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/5 text-primary text-xs font-semibold tracking-wider uppercase mb-6">
+            <Sparkle className="size-3.5" />
+            Join the Movement
+          </div>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-5">
+            Be Part of the Future of Housing.
+          </h2>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            We're building VORIX with real people, real experiences, and real feedback. Join us as we create
+            a smarter and more trusted housing ecosystem.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {actions.map((a, i) => {
+            const Icon = a.icon;
+            const isFeatured = i === 0;
+            return (
+              <a
+                key={a.title}
+                href={a.href}
+                target={a.href.startsWith("http") ? "_blank" : undefined}
+                rel={a.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className={`group relative overflow-hidden rounded-2xl border border-border bg-card/60 backdrop-blur-xl p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:border-primary/40 ${
+                  isFeatured ? "lg:col-span-1 md:col-span-2 lg:row-span-1" : ""
+                }`}
+              >
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br ${a.accent} mix-blend-overlay`} />
+                <div className={`absolute -top-16 -right-16 size-40 rounded-full bg-gradient-to-br ${a.accent} opacity-10 group-hover:opacity-30 blur-2xl transition-opacity duration-500`} />
+
+                <div className="relative">
+                  <div className={`inline-flex size-14 items-center justify-center rounded-xl bg-gradient-to-br ${a.accent} text-white shadow-lg mb-5 group-hover:scale-110 transition-transform duration-500`}>
+                    <Icon className="size-6" />
+                  </div>
+                  <div className="text-[11px] font-bold tracking-[0.2em] text-muted-foreground uppercase mb-2">
+                    {a.label}
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-2">{a.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-6">{a.desc}</p>
+                  <div className="inline-flex items-center gap-2 text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {a.title}
+                    <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-xs text-muted-foreground">
+          <div className="flex items-center gap-2"><ShieldCheck className="size-4 text-primary" /> Verified by VORIX</div>
+          <div className="flex items-center gap-2"><Heart className="size-4 text-primary" /> Built with the community</div>
+          <div className="flex items-center gap-2"><Lock className="size-4 text-primary" /> Privacy-first</div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ───────────────── PROBLEMS SECTION ───────────────── */
+function ProblemsSection() {
+  const problems = [
+    { icon: XCircle, title: "Fake Listings", desc: "People waste time and money chasing properties that don't even exist." },
+    { icon: ShieldAlert, title: "Unverified Agents", desc: "Many renters are forced to trust strangers without any accountability or transparency." },
+    { icon: Tag, title: "Inflated Prices", desc: "The same property can appear online at completely different prices from different agents." },
+    { icon: Footprints, title: "Stress & Movement", desc: "Students and renters spend days moving around unfamiliar areas searching for accommodation." },
+    { icon: MessageCircleWarning, title: "Poor Communication", desc: "Many users struggle to get accurate information, responses, or updates from agents." },
+    { icon: AlertTriangle, title: "Fear of Scams", desc: "People constantly worry about losing money before even seeing a property." },
+  ];
+
+  return (
+    <section className="relative py-24 px-6 bg-foreground text-background overflow-hidden">
+      <div className="absolute inset-0 -z-0 opacity-[0.04]" style={{
+        backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
+        backgroundSize: "32px 32px"
+      }} />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-destructive/20 rounded-full blur-[160px] -z-0" />
+
+      <div className="relative max-w-7xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-background/20 bg-background/5 text-background/80 text-xs font-semibold tracking-wider uppercase mb-6">
+            <AlertTriangle className="size-3.5" />
+            The Reality
+          </div>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-5">
+            The Housing Experience Is Broken.
+          </h2>
+          <p className="text-lg text-background/70 leading-relaxed">
+            Millions of people struggle daily with stress, uncertainty, scams, and unreliable housing systems.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {problems.map((p, i) => {
+            const Icon = p.icon;
+            return (
+              <div
+                key={p.title}
+                className="group relative rounded-2xl border border-background/10 bg-background/[0.04] backdrop-blur-sm p-7 hover:bg-background/[0.07] hover:border-background/20 transition-all duration-500 hover:-translate-y-1"
+                style={{ animationDelay: `${i * 80}ms` }}
+              >
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="size-12 rounded-xl bg-destructive/15 text-destructive-foreground flex items-center justify-center shrink-0 ring-1 ring-destructive/30 group-hover:scale-110 transition-transform">
+                    <Icon className="size-5 text-red-400" />
+                  </div>
+                  <div className="text-[10px] font-bold tracking-[0.2em] text-background/40 uppercase pt-2">
+                    Problem 0{i + 1}
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold mb-2">{p.title}</h3>
+                <p className="text-sm text-background/65 leading-relaxed">{p.desc}</p>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="mt-16 text-center">
+          <p className="text-2xl sm:text-3xl font-semibold italic text-background/90 max-w-2xl mx-auto">
+            "Housing should bring peace of mind — not anxiety."
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ───────────────── PLATFORM PREVIEW ───────────────── */
+function PlatformPreview() {
+  const features = [
+    { icon: Search, label: "Smart Discovery", desc: "Find homes that match your needs." },
+    { icon: ShieldCheck, label: "Verified Listings", desc: "Every property is checked." },
+    { icon: MessageSquare, label: "Easy Communication", desc: "Talk safely with verified agents." },
+    { icon: Smartphone, label: "Better Accessibility", desc: "Designed for every device." },
+    { icon: Zap, label: "Organized Search", desc: "No more scattered listings." },
+  ];
+
+  return (
+    <section className="relative py-24 px-6 overflow-hidden bg-gradient-to-b from-background to-foreground/[0.03]">
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[150px]" />
+        <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[150px]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/5 text-primary text-xs font-semibold tracking-wider uppercase mb-6">
+            <Smartphone className="size-3.5" />
+            Platform Preview
+          </div>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-5">
+            Designed For Simplicity, Trust & Accessibility.
+          </h2>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            Built to make housing discovery smoother, faster, and more transparent.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
+          {/* Mockup stage */}
+          <div className="relative h-[640px] flex items-center justify-center">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 rounded-[3rem] blur-3xl" />
+            <div className="relative flex items-end justify-center gap-6">
+              <div className="relative -mb-8 -mr-4 hidden sm:block">
+                <div className="absolute -inset-4 bg-primary/30 rounded-[3rem] blur-2xl" />
+                <img
+                  src={mockupHome}
+                  alt="VORIX home discovery interface"
+                  className="relative w-56 md:w-64 drop-shadow-2xl rotate-[-6deg] hover:rotate-[-3deg] transition-transform duration-700"
+                />
+                <div className="absolute -top-3 -left-3 px-3 py-1.5 rounded-full bg-background border border-border shadow-lg text-[10px] font-bold tracking-wider uppercase text-primary">
+                  <ShieldCheck className="size-3 inline mr-1" /> Verified
+                </div>
+              </div>
+              <div className="relative">
+                <div className="absolute -inset-4 bg-accent/30 rounded-[3rem] blur-2xl" />
+                <img
+                  src={mockupChat}
+                  alt="VORIX secure messaging interface"
+                  className="relative w-60 md:w-72 drop-shadow-2xl rotate-[4deg] hover:rotate-[2deg] transition-transform duration-700"
+                />
+                <div className="absolute -bottom-3 -right-3 px-3 py-1.5 rounded-full bg-foreground text-background shadow-lg text-[10px] font-bold tracking-wider uppercase">
+                  <Lock className="size-3 inline mr-1" /> Encrypted
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Feature list */}
+          <div className="space-y-4">
+            {features.map((f) => {
+              const Icon = f.icon;
+              return (
+                <div
+                  key={f.label}
+                  className="group flex items-start gap-4 p-5 rounded-2xl border border-border bg-card/60 backdrop-blur hover:border-primary/40 hover:bg-card transition-all duration-300"
+                >
+                  <div className="size-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                    <Icon className="size-5" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-foreground">{f.label}</div>
+                    <div className="text-sm text-muted-foreground">{f.desc}</div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="relative max-w-3xl mx-auto text-center">
+          <Quote className="size-10 text-primary/30 mx-auto mb-4" />
+          <p className="text-2xl sm:text-3xl font-semibold italic text-foreground leading-snug">
+            "We're not just building a platform — we're building a better housing experience."
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -933,12 +1221,15 @@ function Index() {
         <SearchBar />
         <Story />
         <WhyExists />
+        <ProblemsSection />
+        <PlatformPreview />
         <PropertyTypes />
 
         <Steps />
         <Featured />
         <Why />
         <Landlord />
+        <CTASection />
         <Survey />
         <Waitlist />
       </main>
