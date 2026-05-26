@@ -930,7 +930,11 @@ function Index() {
       <Nav />
       <main>
         <Hero />
+        <SearchBar />
+        <Story />
+        <WhyExists />
         <PropertyTypes />
+
         <Steps />
         <Featured />
         <Why />
