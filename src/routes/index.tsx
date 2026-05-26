@@ -4,6 +4,8 @@ import prop1 from "@/assets/prop-1.jpg";
 import prop2 from "@/assets/prop-2.jpg";
 import prop3 from "@/assets/prop-3.jpg";
 import prop4 from "@/assets/prop-4.jpg";
+import mockupChat from "@/assets/mockup-chat.png";
+import mockupHome from "@/assets/mockup-home.png";
 import {
   Search,
   MapPin,
@@ -39,6 +41,18 @@ import {
   Compass,
   Target,
   Telescope,
+  Rocket,
+  Mail,
+  Handshake,
+  MessageSquare,
+  Smartphone,
+  Zap,
+  XCircle,
+  Tag,
+  Footprints,
+  MessageCircleWarning,
+  ShieldAlert,
+  Sparkle,
 } from "lucide-react";
 
 
