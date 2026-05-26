@@ -30,7 +30,17 @@ import {
   MessageCircle,
   ClipboardList,
   ExternalLink,
+  Heart,
+  Sparkles,
+  Quote,
+  AlertTriangle,
+  Eye,
+  Scale,
+  Compass,
+  Target,
+  Telescope,
 } from "lucide-react";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
