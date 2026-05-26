@@ -30,7 +30,17 @@ import {
   MessageCircle,
   ClipboardList,
   ExternalLink,
+  Heart,
+  Sparkles,
+  Quote,
+  AlertTriangle,
+  Eye,
+  Scale,
+  Compass,
+  Target,
+  Telescope,
 } from "lucide-react";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -98,26 +108,272 @@ function Nav() {
 
 /* ───────────────── HERO ───────────────── */
 function Hero() {
+  const trust = [
+    { icon: Users, label: "Community Driven" },
+    { icon: ShieldCheck, label: "Verification Focused" },
+    { icon: Heart, label: "Built From Real Experience" },
+    { icon: Sparkles, label: "Early Access Platform" },
+  ];
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-primary-soft/40 to-background">
-      <div className="max-w-7xl mx-auto px-6 pt-20 pb-28 md:pt-28 md:pb-36 text-center animate-fade-up">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-soft text-accent text-xs font-semibold mb-6">
+    <section className="relative overflow-hidden bg-gradient-to-b from-primary via-primary to-[oklch(0.22_0.05_235)] text-primary-foreground">
+      {/* ambient glow */}
+      <div className="pointer-events-none absolute -top-32 -left-32 size-[28rem] rounded-full bg-accent/20 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-40 -right-20 size-[32rem] rounded-full bg-[oklch(0.55_0.15_220)]/20 blur-3xl" />
+      <div className="pointer-events-none absolute inset-0 opacity-[0.04] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] [background-size:48px_48px]" />
+
+      <div className="relative max-w-6xl mx-auto px-6 pt-24 pb-28 md:pt-32 md:pb-36 text-center animate-fade-up">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-xs font-semibold mb-8">
           <span className="size-1.5 rounded-full bg-accent animate-pulse-dot" />
-          Now in early access · Nigeria
+          A new kind of housing platform · Built for real people
         </div>
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-primary mb-6 max-w-4xl mx-auto text-balance leading-[1.1]">
-          Rent, Buy, Sell, Book, Save & Manage Homes
-          <span className="block text-foreground/70 mt-2 text-2xl md:text-3xl font-medium">
-            — All in One Platform
+
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 max-w-5xl mx-auto text-balance leading-[1.05]">
+          Finding a place to stay{" "}
+          <span className="relative inline-block">
+            <span className="bg-gradient-to-r from-accent to-[oklch(0.78_0.14_175)] bg-clip-text text-transparent">
+              shouldn't feel like survival.
+            </span>
           </span>
         </h1>
-        <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-          Africa's trusted housing platform with verified listings, secure transactions,
-          and AI-powered discovery built to eliminate fraud.
+
+        <p className="text-base md:text-lg text-primary-foreground/80 max-w-2xl mx-auto mb-6 leading-relaxed">
+          VORIX is building a smarter and more trusted way to discover verified accommodation,
+          reduce housing stress, and simplify the real estate experience for students, young
+          professionals, families, and everyday renters across Nigeria and beyond.
         </p>
 
-        {/* Search bar */}
-        <div className="bg-card rounded-2xl shadow-elevated border border-border p-3 md:p-4 max-w-4xl mx-auto text-left">
+        <p className="text-sm md:text-base text-primary-foreground/60 max-w-2xl mx-auto mb-10 italic leading-relaxed">
+          Too many people lose money, time, opportunities, and peace of mind searching for
+          accommodation. We believe technology can change that.
+        </p>
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-14">
+          <a
+            href="https://chat.whatsapp.com/IC1tNbguLmx6ZgO7j09r7W"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-accent text-accent-foreground font-semibold px-7 py-3.5 rounded-lg hover:opacity-90 transition-all hover:-translate-y-0.5 shadow-elevated"
+          >
+            Join the Community
+            <ArrowRight className="size-4" />
+          </a>
+          <a
+            href="#vision"
+            className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 backdrop-blur-sm border border-white/20 font-semibold px-7 py-3.5 rounded-lg transition-colors"
+          >
+            See Our Vision
+          </a>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto">
+          {trust.map((t) => (
+            <div
+              key={t.label}
+              className="flex items-center gap-2.5 bg-white/[0.06] border border-white/10 rounded-xl px-4 py-3 backdrop-blur-sm text-left"
+            >
+              <span className="size-8 rounded-lg bg-accent/15 text-accent flex items-center justify-center shrink-0">
+                <t.icon className="size-4" />
+              </span>
+              <span className="text-xs md:text-sm font-medium text-primary-foreground/85 leading-tight">
+                {t.label}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ───────────────── FOUNDER'S STORY ───────────────── */
+function Story() {
+  const beats = [
+    {
+      label: "The Beginning",
+      text: "When I gained admission into university, I thought finding accommodation would be simple. Instead, it became one of the most stressful experiences of my life.",
+    },
+    {
+      label: "The Struggle",
+      text: "I searched across online platforms, contacted agents, moved from place to place, spent money on transportation, missed lectures, and struggled to find a safe and trustworthy place to stay.",
+    },
+    {
+      label: "The Reality",
+      text: "Different agents showed the same rooms with different prices. Some demanded payments before inspections. Some listings were fake. Some locations looked nothing like the pictures online.",
+    },
+    {
+      label: "The Realization",
+      text: "What affected me the most was realizing that thousands of other students and everyday people were facing the exact same problem. The system lacked trust. It lacked structure. It lacked transparency.",
+    },
+    {
+      label: "The Mission",
+      text: "That experience became the foundation of VORIX. We are not just building another property platform — we are building a system designed to make housing discovery safer, simpler, smarter, and more transparent for everyone.",
+    },
+  ];
+  return (
+    <section className="py-24 md:py-32 bg-background">
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="text-center max-w-2xl mx-auto mb-16 animate-fade-up">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-soft text-accent text-xs font-semibold mb-5">
+            <Heart className="size-3.5" />
+            Founder's Story
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold text-primary tracking-tight leading-tight">
+            Built From Real Experience
+          </h2>
+        </div>
+
+        <div className="relative">
+          {/* timeline rail */}
+          <div className="absolute left-4 md:left-1/2 top-2 bottom-2 w-px bg-gradient-to-b from-transparent via-border to-transparent md:-translate-x-px" />
+
+          <div className="space-y-10 md:space-y-14">
+            {beats.map((b, i) => (
+              <div
+                key={b.label}
+                className={`relative grid md:grid-cols-2 gap-4 md:gap-12 items-center ${
+                  i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
+                }`}
+              >
+                {/* dot */}
+                <span className="absolute left-4 md:left-1/2 size-3 rounded-full bg-accent ring-4 ring-background -translate-x-1/2 mt-1 md:mt-0" />
+
+                <div className={`pl-12 md:pl-0 ${i % 2 === 1 ? "md:text-left md:pl-12" : "md:text-right md:pr-12"}`}>
+                  <div className="text-xs font-bold uppercase tracking-[0.18em] text-accent mb-2">
+                    Chapter {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold text-primary">{b.label}</h3>
+                </div>
+
+                <div className={`pl-12 md:pl-12 ${i % 2 === 1 ? "md:pl-0 md:pr-12" : ""}`}>
+                  <p className="text-base text-foreground/75 leading-relaxed">{b.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <figure className="mt-20 bg-gradient-to-br from-primary to-[oklch(0.22_0.05_235)] text-primary-foreground rounded-3xl p-10 md:p-14 relative overflow-hidden shadow-elevated">
+          <Quote className="absolute top-6 left-6 size-16 text-white/10" />
+          <blockquote className="relative text-xl md:text-2xl font-medium leading-snug max-w-3xl mx-auto text-center italic">
+            "We didn't start VORIX from imagination — we started it from frustration,
+            experience, and the desire to solve a real problem."
+          </blockquote>
+          <figcaption className="relative text-center mt-6 text-sm text-primary-foreground/60 font-medium tracking-wider uppercase">
+            — Founder, VORIX Technologies
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+  );
+}
+
+/* ───────────────── WHY VORIX EXISTS ───────────────── */
+function WhyExists() {
+  const problems = [
+    { icon: AlertTriangle, label: "Fake property listings" },
+    { icon: ShieldCheck, label: "Unverified agents" },
+    { icon: Scale, label: "Inflated prices" },
+    { icon: PhoneOff, label: "Poor communication" },
+    { icon: Eye, label: "Lack of transparency" },
+    { icon: Lock, label: "Housing scams" },
+    { icon: Compass, label: "Wasted time & cost" },
+  ];
+  return (
+    <section id="vision" className="py-24 md:py-32 bg-surface relative overflow-hidden">
+      <div className="pointer-events-none absolute top-20 right-0 size-96 rounded-full bg-accent/5 blur-3xl" />
+      <div className="relative max-w-6xl mx-auto px-6">
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-soft text-primary text-xs font-semibold mb-5">
+            <Compass className="size-3.5" />
+            Our Purpose
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold text-primary mb-5 tracking-tight leading-tight">
+            Why VORIX Exists
+          </h2>
+          <p className="text-muted-foreground leading-relaxed">
+            Finding accommodation should not be stressful, unsafe, confusing, or exploitative.
+            Yet for too many people, it still is.
+          </p>
+        </div>
+
+        <div className="bg-card border border-border rounded-2xl p-8 md:p-10 shadow-card mb-12">
+          <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-6">
+            People struggle daily with:
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {problems.map((p) => (
+              <div
+                key={p.label}
+                className="flex items-center gap-3 bg-surface border border-border rounded-xl px-4 py-3.5 hover:border-accent/40 hover:bg-accent-soft/30 transition-colors"
+              >
+                <span className="size-9 rounded-lg bg-destructive/10 text-destructive flex items-center justify-center shrink-0">
+                  <p.icon className="size-4" />
+                </span>
+                <span className="text-sm font-medium text-foreground/85">{p.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="max-w-3xl mx-auto text-center mb-14">
+          <p className="text-base md:text-lg text-foreground/75 leading-relaxed">
+            We believe technology can simplify this process. Our mission is to create a
+            connected housing ecosystem where people can discover properties more confidently,
+            communicate more efficiently, and access better housing opportunities with less
+            stress. We are starting from student communities because the housing problem is
+            highly visible there — but our vision goes far beyond campuses. VORIX is being
+            built to serve broader urban housing systems across Nigeria, Africa, and
+            eventually global markets.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="group relative bg-gradient-to-br from-primary to-[oklch(0.24_0.05_235)] text-primary-foreground rounded-2xl p-8 md:p-10 overflow-hidden shadow-card hover:shadow-elevated transition-shadow">
+            <div className="absolute -top-10 -right-10 size-40 rounded-full bg-accent/20 blur-2xl" />
+            <div className="relative">
+              <div className="size-12 rounded-xl bg-accent/20 text-accent flex items-center justify-center mb-5">
+                <Target className="size-6" />
+              </div>
+              <div className="text-xs font-bold uppercase tracking-[0.18em] text-accent mb-3">
+                Our Mission
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold leading-tight mb-3">
+                Building a smarter future for housing discovery.
+              </h3>
+              <p className="text-sm text-primary-foreground/70 leading-relaxed">
+                Make every step — from search to move-in — safer, simpler, and more
+                transparent for renters, agents, and landlords alike.
+              </p>
+            </div>
+          </div>
+
+          <div className="group relative bg-card border border-border rounded-2xl p-8 md:p-10 shadow-card hover:shadow-elevated transition-shadow">
+            <div className="size-12 rounded-xl bg-accent-soft text-accent flex items-center justify-center mb-5">
+              <Telescope className="size-6" />
+            </div>
+            <div className="text-xs font-bold uppercase tracking-[0.18em] text-accent mb-3">
+              Our Vision
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-primary leading-tight mb-3">
+              To become one of Africa's most trusted technology-driven housing platforms.
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              A connected ecosystem powering housing access across cities, campuses, and
+              communities — from Lagos to the rest of the continent.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ───────────────── SEARCH (utility) ───────────────── */
+function SearchBar() {
+  return (
+    <section className="bg-background -mt-12 relative z-10">
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="bg-card rounded-2xl shadow-elevated border border-border p-3 md:p-4 text-left">
           <div className="grid md:grid-cols-[1.3fr_1fr_1fr_auto] gap-2">
             <div className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted/60 transition-colors">
               <MapPin className="size-4 text-primary shrink-0" />
@@ -166,20 +422,11 @@ function Hero() {
             </button>
           </div>
         </div>
-
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground">
-          <a href="#types" className="hover:text-primary transition-colors font-medium">
-            Find a Property →
-          </a>
-          <span className="text-border">|</span>
-          <a href="#landlord" className="hover:text-primary transition-colors font-medium">
-            List a Property →
-          </a>
-        </div>
       </div>
     </section>
   );
 }
+
 
 /* ───────────────── PROPERTY TYPES ───────────────── */
 function PropertyTypes() {
@@ -683,7 +930,11 @@ function Index() {
       <Nav />
       <main>
         <Hero />
+        <SearchBar />
+        <Story />
+        <WhyExists />
         <PropertyTypes />
+
         <Steps />
         <Featured />
         <Why />
