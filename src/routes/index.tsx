@@ -1099,6 +1099,15 @@ function Footer() {
               >
                 <MessageCircle className="size-4" />
               </a>
+              <a
+                href="https://instagram.com/vorixtechnology"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="size-9 rounded-lg bg-white/10 hover:bg-accent flex items-center justify-center transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram className="size-4" />
+              </a>
             </div>
           </div>
           {cols.map((c) => (
