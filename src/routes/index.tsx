@@ -1433,8 +1433,10 @@ function Index() {
         <Why />
         <Landlord />
         <CTASection />
+        <ContactCommunity />
         <Survey />
         <Waitlist />
+        <TrustVision />
       </main>
       <Footer />
     </div>
