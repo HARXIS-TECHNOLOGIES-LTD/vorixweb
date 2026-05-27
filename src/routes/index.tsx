@@ -1159,6 +1159,8 @@ function PlatformPreview() {
                 <img
                   src={mockupHome}
                   alt="VORIX home discovery interface"
+                  loading="lazy"
+                  decoding="async"
                   className="relative w-56 md:w-64 drop-shadow-2xl rotate-[-6deg] hover:rotate-[-3deg] transition-transform duration-700"
                 />
                 <div className="absolute -top-3 -left-3 px-3 py-1.5 rounded-full bg-background border border-border shadow-lg text-[10px] font-bold tracking-wider uppercase text-primary">
@@ -1170,6 +1172,8 @@ function PlatformPreview() {
                 <img
                   src={mockupChat}
                   alt="VORIX secure messaging interface"
+                  loading="lazy"
+                  decoding="async"
                   className="relative w-60 md:w-72 drop-shadow-2xl rotate-[4deg] hover:rotate-[2deg] transition-transform duration-700"
                 />
                 <div className="absolute -bottom-3 -right-3 px-3 py-1.5 rounded-full bg-foreground text-background shadow-lg text-[10px] font-bold tracking-wider uppercase">
