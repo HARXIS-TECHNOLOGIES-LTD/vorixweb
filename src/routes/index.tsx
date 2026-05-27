@@ -809,11 +809,49 @@ function Survey() {
   );
 }
 
-/* ───────────────── WAITLIST ───────────────── */
+/* ───────────────── WAITLIST (functional) ───────────────── */
 function Waitlist() {
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [joined, setJoined] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const trimmed = email.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+    setLoading(true);
+    try {
+      // ─── INTEGRATION PLACEHOLDER ───────────────────────────────
+      // Replace this block with your preferred integration:
+      //   • Custom API:   await fetch("/api/waitlist", { method: "POST", body: JSON.stringify({ email: trimmed }) });
+      //   • Formspree:    await fetch("https://formspree.io/f/XXXX", { method: "POST", headers: { Accept: "application/json" }, body: new FormData(e.target as HTMLFormElement) });
+      //   • Supabase:     await supabase.from("waitlist").insert({ email: trimmed });
+      //   • Firebase:     await addDoc(collection(db, "waitlist"), { email: trimmed, createdAt: serverTimestamp() });
+      //   • Google Sheet: await fetch("<Apps Script Web App URL>", { method: "POST", body: JSON.stringify({ email: trimmed }) });
+      await new Promise((r) => setTimeout(r, 600)); // simulated network
+      // ───────────────────────────────────────────────────────────
+
+      toast.success("Thank you for joining the VORIX early access community.");
+      setJoined(true);
+      setEmail("");
+    } catch (err) {
+      console.error(err);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <section id="waitlist" className="py-20 md:py-28">
       <div className="max-w-3xl mx-auto px-6 text-center">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-soft text-accent text-xs font-semibold mb-5">
+          <Rocket className="size-3.5" />
+          Early Access
+        </div>
         <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4 tracking-tight">
           Join the VORIX community
         </h2>
@@ -821,24 +859,170 @@ function Waitlist() {
           Get early access to verified housing and fraud-proof rentals. Be first when we
           launch in your city.
         </p>
-        <form
-          onSubmit={(e) => e.preventDefault()}
-          className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-        >
-          <input
-            type="email"
-            required
-            placeholder="Enter your email"
-            className="flex-1 px-4 py-3 rounded-lg border border-border bg-card focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
-          />
-          <button className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity whitespace-nowrap">
-            Join Early Access
-          </button>
-        </form>
+
+        {joined ? (
+          <div className="max-w-md mx-auto bg-card border border-accent/30 rounded-2xl p-8 shadow-elevated animate-fade-up">
+            <div className="size-12 mx-auto rounded-full bg-accent/15 text-accent flex items-center justify-center mb-4">
+              <Check className="size-6" />
+            </div>
+            <h3 className="text-lg font-bold text-primary mb-2">You're on the list 🎉</h3>
+            <p className="text-sm text-muted-foreground mb-5">
+              Thank you for joining the VORIX early access community. We'll be in touch soon.
+            </p>
+            <button
+              onClick={() => setJoined(false)}
+              className="text-sm font-semibold text-primary hover:underline"
+            >
+              Add another email
+            </button>
+          </div>
+        ) : (
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+          >
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              maxLength={255}
+              disabled={loading}
+              placeholder="Enter your email"
+              className="flex-1 px-4 py-3 rounded-lg border border-border bg-card focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm disabled:opacity-60"
+            />
+            <button
+              type="submit"
+              disabled={loading}
+              className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity whitespace-nowrap disabled:opacity-60"
+            >
+              {loading ? <Loader2 className="size-4 animate-spin" /> : null}
+              {loading ? "Joining…" : "Join Early Access"}
+            </button>
+          </form>
+        )}
+
+        <p className="text-xs text-muted-foreground/70 mt-5">
+          We respect your privacy. No spam — ever.
+        </p>
       </div>
     </section>
   );
 }
+
+/* ───────────────── CONTACT & COMMUNITY ───────────────── */
+function ContactCommunity() {
+  const cards = [
+    {
+      icon: Handshake,
+      label: "Partnership & Collaboration",
+      desc: "Interested in partnering with VORIX?",
+      cta: "vorixconnectltd@gmail.com",
+      href: "mailto:vorixconnectltd@gmail.com?subject=VORIX%20Partnership",
+      accent: "from-fuchsia-500 to-pink-500",
+    },
+    {
+      icon: MessageCircle,
+      label: "Community Support",
+      desc: "Join our growing VORIX community.",
+      cta: "Open WhatsApp Community",
+      href: "https://chat.whatsapp.com/IC1tNbguLmx6ZgO7j09r7W",
+      accent: "from-emerald-500 to-teal-500",
+    },
+    {
+      icon: Mail,
+      label: "Contact Team",
+      desc: "Reach out directly to the VORIX Team.",
+      cta: "vorixtechnologiesltd@gmail.com",
+      href: "mailto:vorixtechnologiesltd@gmail.com?subject=VORIX%20Enquiry",
+      accent: "from-sky-500 to-indigo-500",
+    },
+    {
+      icon: TrendingUp,
+      label: "Investor / Business Inquiry",
+      desc: "For investor interest and business discussions.",
+      cta: "vorixconnectltd@gmail.com",
+      href: "mailto:vorixconnectltd@gmail.com?subject=VORIX%20Investor%20Inquiry",
+      accent: "from-amber-500 to-orange-500",
+    },
+  ];
+
+  return (
+    <section id="contact" className="relative py-24 px-6 bg-surface overflow-hidden">
+      <div className="absolute inset-0 -z-0 pointer-events-none">
+        <div className="absolute top-0 left-1/3 w-[420px] h-[420px] bg-primary/5 rounded-full blur-[140px]" />
+      </div>
+      <div className="relative max-w-6xl mx-auto">
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-soft text-primary text-xs font-semibold mb-5">
+            <MessageSquare className="size-3.5" />
+            Contact & Community
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold text-primary tracking-tight leading-tight mb-4">
+            Let's build VORIX together.
+          </h2>
+          <p className="text-muted-foreground leading-relaxed">
+            Partners, investors, agents, and renters — every conversation moves us forward.
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 gap-5">
+          {cards.map((c) => {
+            const Icon = c.icon;
+            const external = c.href.startsWith("http");
+            return (
+              <a
+                key={c.label}
+                href={c.href}
+                target={external ? "_blank" : undefined}
+                rel={external ? "noopener noreferrer" : undefined}
+                className="group relative overflow-hidden rounded-2xl border border-border bg-card p-7 shadow-card hover:shadow-elevated hover:-translate-y-0.5 hover:border-primary/40 transition-all"
+              >
+                <div className={`absolute -top-16 -right-16 size-40 rounded-full bg-gradient-to-br ${c.accent} opacity-10 group-hover:opacity-25 blur-2xl transition-opacity`} />
+                <div className="relative">
+                  <div className={`inline-flex size-12 items-center justify-center rounded-xl bg-gradient-to-br ${c.accent} text-white shadow-lg mb-4 group-hover:scale-110 transition-transform`}>
+                    <Icon className="size-5" />
+                  </div>
+                  <div className="text-[11px] font-bold tracking-[0.2em] text-muted-foreground uppercase mb-2">
+                    {c.label}
+                  </div>
+                  <p className="text-base text-foreground/85 leading-relaxed mb-5">{c.desc}</p>
+                  <div className="inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:gap-3 transition-all">
+                    {c.cta}
+                    <ArrowRight className="size-4" />
+                  </div>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ───────────────── TRUST & VISION (short) ───────────────── */
+function TrustVision() {
+  return (
+    <section className="relative py-20 md:py-24 px-6 bg-gradient-to-br from-primary via-primary to-[oklch(0.22_0.05_235)] text-primary-foreground overflow-hidden">
+      <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 size-[36rem] rounded-full bg-accent/15 blur-3xl" />
+      <div className="relative max-w-3xl mx-auto text-center">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/15 text-xs font-semibold mb-6">
+          <Globe2 className="size-3.5" />
+          Our Promise
+        </div>
+        <p className="text-2xl md:text-3xl font-semibold leading-snug">
+          VORIX is building a smarter and more trusted future for{" "}
+          <span className="bg-gradient-to-r from-accent to-[oklch(0.78_0.14_175)] bg-clip-text text-transparent">
+            accommodation discovery and real estate access
+          </span>{" "}
+          across Africa.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 
 /* ───────────────── FOOTER ───────────────── */
 function Footer() {
