@@ -1389,11 +1389,9 @@ function Index() {
         <Featured />
         <Why />
         <Landlord />
-        <CTASection />
-        <ContactCommunity />
         <Survey />
-        <Waitlist />
-        <TrustVision />
+        <ConnectVorix />
+
       </main>
       <Footer />
     </div>
