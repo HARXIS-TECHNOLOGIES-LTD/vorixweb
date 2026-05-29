@@ -1087,7 +1087,7 @@ function Footer() {
         </div>
         <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row gap-4 justify-between items-center text-xs text-primary-foreground/60">
           <span>© 2026 VORIX Technologies · Lagos, Nigeria</span>
-          <span>hello@vorix.africa</span>
+          <a href="mailto:vorixconnectltd@gmail.com" className="hover:text-accent transition-colors">vorixconnectltd@gmail.com</a>
         </div>
       </div>
     </footer>
