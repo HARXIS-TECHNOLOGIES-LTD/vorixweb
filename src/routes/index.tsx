@@ -156,15 +156,9 @@ function Hero() {
           </span>
         </h1>
 
-        <p className="text-base md:text-lg text-primary-foreground/80 max-w-2xl mx-auto mb-6 leading-relaxed">
-          VORIX is building a smarter and more trusted way to discover verified accommodation,
-          reduce housing stress, and simplify the real estate experience for students, young
-          professionals, families, and everyday renters across Nigeria and beyond.
-        </p>
-
-        <p className="text-sm md:text-base text-primary-foreground/60 max-w-2xl mx-auto mb-10 italic leading-relaxed">
-          Too many people lose money, time, opportunities, and peace of mind searching for
-          accommodation. We believe technology can change that.
+        <p className="text-base md:text-xl text-primary-foreground/85 max-w-2xl mx-auto mb-10 leading-relaxed">
+          VORIX is simplifying accommodation discovery and real estate access across Africa —
+          verified, trusted, and built for real people.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-14">
