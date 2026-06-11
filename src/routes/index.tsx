@@ -93,7 +93,7 @@ function Nav() {
   ] as const;
   return (
     <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
-      <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center gap-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center gap-6">
         <a href="#" className="flex items-center gap-2.5 shrink-0">
           <div className="size-10 bg-primary rounded-lg flex items-center justify-center p-1.5">
             <img src={logo} alt="VORIX" className="w-full h-full object-contain brightness-0 invert" />
@@ -141,13 +141,13 @@ function Hero() {
       <div className="pointer-events-none absolute -bottom-40 -right-20 size-[32rem] rounded-full bg-[oklch(0.55_0.15_220)]/20 blur-3xl" />
       <div className="pointer-events-none absolute inset-0 opacity-[0.04] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] [background-size:48px_48px]" />
 
-      <div className="relative max-w-6xl mx-auto px-6 pt-24 pb-28 md:pt-32 md:pb-36 text-center animate-fade-up">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-16 pb-20 sm:pt-24 sm:pb-28 md:pt-32 md:pb-36 text-center animate-fade-up">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-xs font-semibold mb-8">
           <span className="size-1.5 rounded-full bg-accent animate-pulse-dot" />
           A new kind of housing platform · Built for real people
         </div>
 
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 max-w-5xl mx-auto text-balance leading-[1.05]">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 max-w-5xl mx-auto text-balance leading-[1.05]">
           Finding a place to stay{" "}
           <span className="relative inline-block">
             <span className="bg-gradient-to-r from-accent to-[oklch(0.78_0.14_175)] bg-clip-text text-transparent">
@@ -224,14 +224,14 @@ function Story() {
     },
   ];
   return (
-    <section className="py-24 md:py-32 bg-background">
-      <div className="max-w-5xl mx-auto px-6">
+    <section className="py-16 md:py-32 bg-background">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-2xl mx-auto mb-16 animate-fade-up">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-soft text-accent text-xs font-semibold mb-5">
             <Heart className="size-3.5" />
             Founder's Story
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-primary tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-primary tracking-tight leading-tight">
             Built From Real Experience
           </h2>
         </div>
@@ -293,15 +293,15 @@ function WhyExists() {
     { icon: Compass, label: "Wasted time & cost" },
   ];
   return (
-    <section id="vision" className="py-24 md:py-32 bg-surface relative overflow-hidden">
+    <section id="vision" className="py-16 md:py-32 bg-surface relative overflow-hidden">
       <div className="pointer-events-none absolute top-20 right-0 size-96 rounded-full bg-accent/5 blur-3xl" />
-      <div className="relative max-w-6xl mx-auto px-6">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-soft text-primary text-xs font-semibold mb-5">
             <Compass className="size-3.5" />
             Our Purpose
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-primary mb-5 tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-primary mb-5 tracking-tight leading-tight">
             Why VORIX Exists
           </h2>
           <p className="text-muted-foreground leading-relaxed">
@@ -386,7 +386,7 @@ function WhyExists() {
 function SearchBar() {
   return (
     <section className="bg-background -mt-12 relative z-10">
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <div className="bg-card rounded-2xl shadow-elevated border border-border p-3 md:p-4 text-left">
           <div className="grid md:grid-cols-[1.3fr_1fr_1fr_auto] gap-2">
             <div className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted/60 transition-colors">
@@ -453,10 +453,10 @@ function PropertyTypes() {
     { icon: Briefcase, name: "Commercial", desc: "Office spaces, retail shops, and warehouses.", count: "Coming Soon", live: false },
   ];
   return (
-    <section id="types" className="py-20 md:py-24 bg-surface">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="types" className="py-14 md:py-24 bg-surface">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-3 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-3 tracking-tight">
             Explore Properties
           </h2>
           <p className="text-muted-foreground">Find the perfect property type for your needs.</p>
@@ -510,10 +510,10 @@ function Steps() {
     },
   ];
   return (
-    <section className="py-20 md:py-24">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-14 md:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-3 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-3 tracking-tight">
             Your Safe Path to Property
           </h2>
           <p className="text-muted-foreground">
@@ -592,11 +592,11 @@ function Featured() {
   ];
   const filters = ["All", "Rent", "Buy", "Shortlets", "Hostels"];
   return (
-    <section className="py-20 md:py-24 bg-surface">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-14 md:py-24 bg-surface">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-3 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-3 tracking-tight">
               Featured Properties
             </h2>
             <p className="text-muted-foreground">Handpicked properties from verified landlords.</p>
@@ -678,10 +678,10 @@ function Why() {
     { icon: LifeBuoy, title: "Always Here to Help", desc: "Report issues and get support anytime, anywhere." },
   ];
   return (
-    <section className="py-20 md:py-24">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-14 md:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-3 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-3 tracking-tight">
             Why VORIX is Different
           </h2>
           <p className="text-muted-foreground">Built with trust and safety at the core.</p>
@@ -711,11 +711,11 @@ function Landlord() {
     "Get verification badges that build trust",
   ];
   return (
-    <section id="landlord" className="py-20 md:py-24 bg-surface">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="bg-primary text-primary-foreground rounded-3xl p-10 md:p-16 grid md:grid-cols-2 gap-12 items-center">
+    <section id="landlord" className="py-14 md:py-24 bg-surface">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="bg-primary text-primary-foreground rounded-3xl p-6 sm:p-10 md:p-16 grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 tracking-tight">
               Are you a landlord or agent?
             </h2>
             <p className="text-primary-foreground/70 leading-relaxed mb-8">
@@ -752,8 +752,8 @@ function Landlord() {
 /* ───────────────── SURVEY ───────────────── */
 function Survey() {
   return (
-    <section className="py-20 md:py-24 bg-surface">
-      <div className="max-w-4xl mx-auto px-6">
+    <section className="py-14 md:py-24 bg-surface">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <div className="bg-card border border-border rounded-2xl p-8 md:p-12 shadow-card relative overflow-hidden">
           <div className="absolute top-0 right-0 size-32 bg-accent-soft/40 rounded-bl-full" />
           <div className="relative">
@@ -873,7 +873,7 @@ function ConnectVorix() {
   ];
 
   return (
-    <section id="connect" className="relative py-24 md:py-28 px-6 overflow-hidden bg-gradient-to-b from-background via-surface to-background">
+    <section id="connect" className="relative py-16 md:py-28 px-6 overflow-hidden bg-gradient-to-b from-background via-surface to-background">
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[140px]" />
         <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[120px]" />
@@ -885,7 +885,7 @@ function ConnectVorix() {
             <Sparkle className="size-3.5" />
             Connect With VORIX
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
             Join the movement reshaping African housing.
           </h2>
           <p className="text-muted-foreground leading-relaxed">
@@ -1003,7 +1003,7 @@ function Footer() {
   ];
   return (
     <footer className="bg-primary text-primary-foreground pt-20 pb-8">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-12 mb-14">
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2.5 mb-5">
@@ -1107,7 +1107,7 @@ function ProblemsSection() {
   ];
 
   return (
-    <section className="relative py-24 px-6 bg-foreground text-background overflow-hidden">
+    <section className="relative py-16 md:py-24 px-4 sm:px-6 bg-foreground text-background overflow-hidden">
       <div className="absolute inset-0 -z-0 opacity-[0.04]" style={{
         backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
         backgroundSize: "32px 32px"
@@ -1120,7 +1120,7 @@ function ProblemsSection() {
             <AlertTriangle className="size-3.5" />
             The Reality
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-5">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-5">
             The Housing Experience Is Broken.
           </h2>
           <p className="text-lg text-background/70 leading-relaxed">
@@ -1173,7 +1173,7 @@ function PlatformPreview() {
   ];
 
   return (
-    <section className="relative py-24 px-6 overflow-hidden bg-gradient-to-b from-background to-foreground/[0.03]">
+    <section className="relative py-16 md:py-24 px-4 sm:px-6 overflow-hidden bg-gradient-to-b from-background to-foreground/[0.03]">
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[150px]" />
         <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[150px]" />
@@ -1185,7 +1185,7 @@ function PlatformPreview() {
             <Smartphone className="size-3.5" />
             Platform Preview
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-5">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-5">
             Designed For Simplicity, Trust & Accessibility.
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
