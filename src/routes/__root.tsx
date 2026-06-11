@@ -104,6 +104,41 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap",
       },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "VORIX",
+          url: "https://vorixweb.lovable.app",
+          logo: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/56f7b603-98e5-4941-bfe5-969df163866c",
+          description: "VORIX is a real estate platform starting with students, simplifying housing access through verified listings, trust, and smart property matching.",
+          sameAs: [
+            "https://www.linkedin.com/company/vorix-technologies/",
+            "https://www.tiktok.com/@vorix0001",
+            "https://www.instagram.com/vorixtechnology",
+          ],
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "VORIX",
+          url: "https://vorixweb.lovable.app",
+          potentialAction: {
+            "@type": "SearchAction",
+            target: {
+              "@type": "EntryPoint",
+              urlTemplate: "https://vorixweb.lovable.app/search?q={search_term_string}",
+            },
+            "query-input": "required name=search_term_string",
+          },
+        }),
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
