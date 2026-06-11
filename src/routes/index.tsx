@@ -917,7 +917,7 @@ function ConnectVorix() {
   ];
 
   return (
-    <section id="connect" className="relative py-16 md:py-28 px-6 overflow-hidden bg-gradient-to-b from-background via-surface to-background">
+    <section id="connect" className="relative py-16 md:py-28 px-4 sm:px-6 overflow-hidden bg-gradient-to-b from-background via-surface to-background">
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[140px]" />
         <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[120px]" />
