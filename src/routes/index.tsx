@@ -84,6 +84,7 @@ export const Route = createFileRoute("/")({
 
 /* ───────────────── NAV ───────────────── */
 function Nav() {
+  const [open, setOpen] = useState(false);
   const links = [
     ["Rent", "#types"],
     ["Buy & Sell", "#types"],
@@ -93,12 +94,12 @@ function Nav() {
   ] as const;
   return (
     <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center gap-6">
-        <a href="#" className="flex items-center gap-2.5 shrink-0">
-          <div className="size-10 bg-primary rounded-lg flex items-center justify-center p-1.5">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center gap-4">
+        <a href="#" className="flex items-center gap-2.5 shrink-0 min-w-0">
+          <div className="size-9 sm:size-10 bg-primary rounded-lg flex items-center justify-center p-1.5 shrink-0">
             <img src={logo} alt="VORIX" className="w-full h-full object-contain brightness-0 invert" />
           </div>
-          <span className="text-lg font-bold tracking-tight text-primary">VORIX</span>
+          <span className="text-base sm:text-lg font-bold tracking-tight text-primary truncate">VORIX</span>
         </a>
         <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-foreground/80">
           {links.map(([label, href]) => (
@@ -107,21 +108,64 @@ function Nav() {
             </a>
           ))}
         </nav>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           <a
             href="#waitlist"
-            className="hidden sm:inline-flex text-sm font-medium px-4 py-2 text-foreground/80 hover:text-primary transition-colors"
+            className="hidden sm:inline-flex text-sm font-medium px-3 py-2 text-foreground/80 hover:text-primary transition-colors"
           >
             Sign In
           </a>
           <a
             href="#landlord"
-            className="text-sm font-semibold bg-primary text-primary-foreground px-4 py-2.5 rounded-lg hover:opacity-90 transition-opacity"
+            className="hidden sm:inline-flex text-sm font-semibold bg-primary text-primary-foreground px-4 py-2.5 rounded-lg hover:opacity-90 transition-opacity"
           >
             List Property
           </a>
+          <button
+            type="button"
+            aria-label="Toggle menu"
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+            className="lg:hidden inline-flex items-center justify-center size-10 rounded-lg border border-border text-foreground hover:bg-muted transition-colors"
+          >
+            <span className="relative block w-5 h-3.5">
+              <span className={`absolute left-0 top-0 h-0.5 w-5 bg-current transition-transform ${open ? "translate-y-1.5 rotate-45" : ""}`} />
+              <span className={`absolute left-0 top-1.5 h-0.5 w-5 bg-current transition-opacity ${open ? "opacity-0" : ""}`} />
+              <span className={`absolute left-0 top-3 h-0.5 w-5 bg-current transition-transform ${open ? "-translate-y-1.5 -rotate-45" : ""}`} />
+            </span>
+          </button>
         </div>
       </div>
+      {open && (
+        <div className="lg:hidden border-t border-border bg-background">
+          <nav className="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-1 text-sm font-medium">
+            {links.map(([label, href]) => (
+              <a
+                key={label}
+                href={href}
+                onClick={() => setOpen(false)}
+                className="px-3 py-3 rounded-lg hover:bg-muted text-foreground/85"
+              >
+                {label}
+              </a>
+            ))}
+            <a
+              href="#waitlist"
+              onClick={() => setOpen(false)}
+              className="px-3 py-3 rounded-lg hover:bg-muted text-foreground/85"
+            >
+              Sign In
+            </a>
+            <a
+              href="#landlord"
+              onClick={() => setOpen(false)}
+              className="mt-1 px-3 py-3 rounded-lg bg-primary text-primary-foreground text-center font-semibold"
+            >
+              List Property
+            </a>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
