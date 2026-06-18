@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Nav, Footer } from "./index";
+import teamPhoto from "@/assets/vorix-team.jpg";
 import {
   Rocket,
   Heart,
@@ -31,6 +32,7 @@ import {
   Telescope,
   Handshake,
   Zap,
+  MapPin,
 } from "lucide-react";
 
 const FORM_URL =
@@ -56,6 +58,78 @@ export const Route = createFileRoute("/join-the-team")({
   component: JoinTheTeam,
 });
 
+/* ───────── Reusable Apply Button ───────── */
+function ApplyButton({
+  variant = "primary",
+  children = "Apply Now",
+  className = "",
+}: {
+  variant?: "primary" | "light";
+  children?: React.ReactNode;
+  className?: string;
+}) {
+  const base =
+    "group relative inline-flex w-full sm:w-auto items-center justify-center gap-2 px-7 py-4 rounded-xl font-semibold transition-all duration-300 overflow-hidden";
+  const styles =
+    variant === "primary"
+      ? "bg-gradient-to-r from-primary to-[oklch(0.55_0.18_255)] text-primary-foreground shadow-lg shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40 hover:-translate-y-0.5"
+      : "bg-background text-foreground border border-border shadow-md hover:shadow-xl hover:-translate-y-0.5 hover:border-primary/40";
+  return (
+    <a
+      href={FORM_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`${base} ${styles} ${className}`}
+    >
+      <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent group-hover:translate-x-full transition-transform duration-700" />
+      <span className="relative flex items-center gap-2">
+        {children}
+        <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+      </span>
+    </a>
+  );
+}
+
+/* ───────── Decorative SVG Patterns ───────── */
+function MapGrid({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden
+      className={`absolute inset-0 w-full h-full ${className}`}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <pattern
+          id="map-grid"
+          width="56"
+          height="56"
+          patternUnits="userSpaceOnUse"
+        >
+          <path
+            d="M 56 0 L 0 0 0 56"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="0.6"
+          />
+        </pattern>
+        <radialGradient id="grid-fade" cx="50%" cy="40%" r="60%">
+          <stop offset="0%" stopColor="white" stopOpacity="1" />
+          <stop offset="100%" stopColor="white" stopOpacity="0" />
+        </radialGradient>
+        <mask id="grid-mask">
+          <rect width="100%" height="100%" fill="url(#grid-fade)" />
+        </mask>
+      </defs>
+      <rect
+        width="100%"
+        height="100%"
+        fill="url(#map-grid)"
+        mask="url(#grid-mask)"
+      />
+    </svg>
+  );
+}
+
 function JoinTheTeam() {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -63,6 +137,7 @@ function JoinTheTeam() {
       <Hero />
       <WhyJoin />
       <OpenRoles />
+      <TeamPhoto />
       <Culture />
       <Process />
       <FAQ />
@@ -75,39 +150,92 @@ function JoinTheTeam() {
 /* ───────── HERO ───────── */
 function Hero() {
   return (
-    <section className="relative overflow-hidden pt-16 pb-20 sm:pt-24 sm:pb-28 md:pt-32 md:pb-36 px-4 sm:px-6">
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-background pointer-events-none" />
-      <div className="absolute top-20 -left-32 size-72 sm:size-96 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 -right-32 size-72 sm:size-96 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
+    <section className="relative overflow-hidden pt-20 pb-24 sm:pt-28 sm:pb-32 md:pt-36 md:pb-40 px-4 sm:px-6">
+      {/* Soft blue gradient backdrop */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.97_0.025_255)] via-background to-background pointer-events-none" />
+      {/* Map grid pattern */}
+      <div className="absolute inset-0 text-primary/15 pointer-events-none">
+        <MapGrid />
+      </div>
+      {/* Floating pins */}
+      <FloatingPin className="hidden sm:block top-32 left-[12%] text-primary/40" />
+      <FloatingPin className="hidden md:block top-48 right-[14%] text-primary/30 [animation-delay:1s]" />
+      <FloatingPin className="hidden sm:block bottom-24 left-[20%] text-primary/25 [animation-delay:2s]" />
+      {/* Blue glow blobs */}
+      <div className="absolute top-20 -left-32 size-72 sm:size-96 bg-primary/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 -right-32 size-72 sm:size-96 bg-[oklch(0.7_0.15_240)]/15 rounded-full blur-3xl pointer-events-none" />
+
       <div className="relative max-w-5xl mx-auto text-center">
-        <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-6">
-          <Sparkles className="size-3.5" /> We're Hiring · Founding Team
+        <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-background border border-primary/20 text-primary text-xs font-semibold mb-6 shadow-sm">
+          <span className="relative flex size-2">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 animate-ping" />
+            <span className="relative inline-flex rounded-full size-2 bg-primary" />
+          </span>
+          We're Hiring · Founding Team
         </span>
         <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] mb-6">
           Join the Team Building the{" "}
-          <span className="text-primary">Future of Student Housing</span>
+          <span className="bg-gradient-to-r from-primary to-[oklch(0.55_0.18_255)] bg-clip-text text-transparent">
+            Future of Student Housing
+          </span>
         </h1>
         <p className="text-base sm:text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto mb-10 leading-relaxed">
-          VORIX is building Africa's most trusted housing platform — starting with students.
-          Join us early and help shape a product, a company, and a movement.
+          VORIX is building Africa's most trusted housing platform — starting
+          with students. Join us early and help shape a product, a company, and
+          a movement.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center">
-          <a
-            href={FORM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-7 py-4 rounded-xl font-semibold hover:opacity-90 transition shadow-lg shadow-primary/20"
-          >
-            Apply Now <ArrowRight className="size-4" />
-          </a>
+          <ApplyButton />
           <a
             href="#roles"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-border bg-background px-7 py-4 rounded-xl font-semibold hover:bg-muted transition"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-border bg-background/60 backdrop-blur px-7 py-4 rounded-xl font-semibold hover:bg-background hover:border-primary/30 transition"
           >
             See Open Roles
           </a>
         </div>
       </div>
+    </section>
+  );
+}
+
+function FloatingPin({ className = "" }: { className?: string }) {
+  return (
+    <div
+      className={`absolute pointer-events-none animate-[fade-in_0.6s_ease-out] ${className}`}
+    >
+      <div className="relative">
+        <MapPin className="size-7 fill-current" strokeWidth={1.5} />
+        <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 size-2 rounded-full bg-current opacity-30 blur-sm" />
+      </div>
+    </div>
+  );
+}
+
+/* ───────── Section wrapper with subtle decoration ───────── */
+function SectionShell({
+  children,
+  tone = "light",
+  id,
+}: {
+  children: React.ReactNode;
+  tone?: "light" | "tint";
+  id?: string;
+}) {
+  return (
+    <section
+      id={id}
+      className={`relative overflow-hidden py-16 md:py-28 px-4 sm:px-6 ${
+        tone === "tint"
+          ? "bg-gradient-to-b from-[oklch(0.98_0.015_255)] to-background"
+          : "bg-background"
+      }`}
+    >
+      {tone === "tint" && (
+        <div className="absolute inset-0 text-primary/10 pointer-events-none opacity-60">
+          <MapGrid />
+        </div>
+      )}
+      <div className="relative">{children}</div>
     </section>
   );
 }
@@ -123,11 +251,14 @@ function WhyJoin() {
     { icon: TrendingUp, title: "Long-Term Equity Potential", desc: "Founding contributors are eligible for equity that grows with the company." },
   ];
   return (
-    <section className="py-16 md:py-28 px-4 sm:px-6 bg-background">
+    <SectionShell tone="light">
       <div className="max-w-7xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-14">
+          <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">
+            Why VORIX
+          </span>
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight mb-4">
-            Why Join VORIX
+            Build something that <span className="text-primary">matters</span>
           </h2>
           <p className="text-foreground/70 text-base sm:text-lg">
             Six reasons people are choosing to build with us.
@@ -137,9 +268,9 @@ function WhyJoin() {
           {items.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
-              className="group p-6 sm:p-7 rounded-2xl border border-border bg-card hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition"
+              className="group relative p-6 sm:p-7 rounded-3xl border border-border bg-card hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300"
             >
-              <div className="size-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-primary-foreground transition">
+              <div className="size-12 rounded-2xl bg-gradient-to-br from-primary/15 to-primary/5 text-primary flex items-center justify-center mb-5 group-hover:from-primary group-hover:to-[oklch(0.55_0.18_255)] group-hover:text-primary-foreground group-hover:shadow-lg group-hover:shadow-primary/30 transition-all">
                 <Icon className="size-6" />
               </div>
               <h3 className="font-bold text-lg mb-2">{title}</h3>
@@ -148,7 +279,7 @@ function WhyJoin() {
           ))}
         </div>
       </div>
-    </section>
+    </SectionShell>
   );
 }
 
@@ -170,17 +301,18 @@ function OpenRoles() {
     { icon: Video, title: "Content Creator", cat: "Growth" },
   ];
   return (
-    <section id="roles" className="py-16 md:py-28 px-4 sm:px-6 bg-muted/30">
+    <SectionShell tone="tint" id="roles">
       <div className="max-w-7xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 text-accent text-xs font-semibold mb-4">
+          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">
             Open Roles
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight mb-4">
-            Find Your Place at VORIX
+            Find your place at VORIX
           </h2>
           <p className="text-foreground/70 text-base sm:text-lg">
-            We're hiring across engineering, design, product, and growth. One application — all roles.
+            We're hiring across engineering, design, product, and growth. One
+            application — all roles.
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
@@ -190,7 +322,7 @@ function OpenRoles() {
               href={FORM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-4 p-5 rounded-2xl border border-border bg-background hover:border-primary hover:shadow-md transition"
+              className="group flex items-center gap-4 p-5 rounded-2xl border border-border bg-background hover:border-primary hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-0.5 transition-all duration-300"
             >
               <div className="size-11 shrink-0 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition">
                 <Icon className="size-5" />
@@ -199,23 +331,75 @@ function OpenRoles() {
                 <h3 className="font-semibold truncate">{title}</h3>
                 <p className="text-xs text-foreground/60">{cat}</p>
               </div>
-              <ArrowRight className="size-4 text-foreground/40 group-hover:text-primary group-hover:translate-x-0.5 transition shrink-0" />
+              <ArrowRight className="size-4 text-foreground/40 group-hover:text-primary group-hover:translate-x-1 transition shrink-0" />
             </a>
           ))}
         </div>
-        <div className="text-center mt-12">
-          <a
-            href={FORM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-7 py-4 rounded-xl font-semibold hover:opacity-90 transition shadow-lg shadow-primary/20"
-          >
-            Apply Now <ArrowRight className="size-4" />
-          </a>
-          <p className="text-xs text-foreground/60 mt-3">Don't see your role? Apply anyway — we want to hear from you.</p>
+        <div className="text-center mt-12 flex flex-col items-center gap-3">
+          <ApplyButton />
+          <p className="text-xs text-foreground/60">
+            Don't see your role? Apply anyway — we want to hear from you.
+          </p>
         </div>
       </div>
-    </section>
+    </SectionShell>
+  );
+}
+
+/* ───────── TEAM PHOTO ───────── */
+function TeamPhoto() {
+  return (
+    <SectionShell tone="light">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">
+            Meet the Team
+          </span>
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight mb-4">
+            The people behind <span className="text-primary">VORIX</span>
+          </h2>
+          <p className="text-foreground/70 text-base sm:text-lg">
+            A growing crew of builders, designers, and dreamers shaping the
+            future of student housing across Africa.
+          </p>
+        </div>
+        <div className="relative">
+          {/* Decorative offset frame */}
+          <div className="absolute -inset-3 sm:-inset-4 rounded-3xl bg-gradient-to-br from-primary/20 via-primary/5 to-transparent blur-2xl pointer-events-none" />
+          <div className="relative rounded-3xl overflow-hidden border border-border shadow-2xl shadow-primary/10 bg-card">
+            <img
+              src={teamPhoto}
+              alt="The VORIX team collaborating in a bright modern office"
+              width={1920}
+              height={1080}
+              loading="lazy"
+              className="w-full h-auto object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent pointer-events-none" />
+          </div>
+          {/* Floating stats */}
+          <div className="grid grid-cols-3 gap-3 sm:gap-4 mt-6 sm:mt-8 max-w-3xl mx-auto">
+            {[
+              { n: "13+", l: "Open Roles" },
+              { n: "100%", l: "Remote-First" },
+              { n: "1", l: "Mission" },
+            ].map((s) => (
+              <div
+                key={s.l}
+                className="text-center p-4 sm:p-5 rounded-2xl bg-card border border-border"
+              >
+                <div className="text-xl sm:text-3xl font-black text-primary">
+                  {s.n}
+                </div>
+                <div className="text-[11px] sm:text-xs text-foreground/60 mt-1 font-medium">
+                  {s.l}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </SectionShell>
   );
 }
 
@@ -230,30 +414,35 @@ function Culture() {
     { icon: Telescope, title: "Long-term Thinking", desc: "We build for decades, not for hype cycles." },
   ];
   return (
-    <section className="py-16 md:py-28 px-4 sm:px-6 bg-background">
+    <SectionShell tone="tint">
       <div className="max-w-7xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight mb-4">
+          <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">
             Our Culture
+          </span>
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight mb-4">
+            How we work, hire, and grow
           </h2>
           <p className="text-foreground/70 text-base sm:text-lg">
-            The values that shape how we work, hire, and grow.
+            Six values that shape every decision we make.
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {values.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
-              className="p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent border border-border"
+              className="group p-6 sm:p-7 rounded-3xl bg-background border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300"
             >
-              <Icon className="size-7 text-primary mb-4" />
+              <div className="size-12 rounded-2xl bg-gradient-to-br from-primary/15 to-transparent flex items-center justify-center mb-4">
+                <Icon className="size-6 text-primary" />
+              </div>
               <h3 className="font-bold text-lg mb-2">{title}</h3>
               <p className="text-sm text-foreground/70 leading-relaxed">{desc}</p>
             </div>
           ))}
         </div>
       </div>
-    </section>
+    </SectionShell>
   );
 }
 
@@ -267,21 +456,24 @@ function Process() {
     { n: "05", title: "Onboarding", desc: "Welcome aboard — we set you up to ship from day one." },
   ];
   return (
-    <section className="py-16 md:py-28 px-4 sm:px-6 bg-muted/30">
+    <SectionShell tone="light">
       <div className="max-w-6xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-14">
+          <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">
+            Process
+          </span>
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight mb-4">
-            Our Recruitment Process
+            From application to onboarding
           </h2>
           <p className="text-foreground/70 text-base sm:text-lg">
             Clear, respectful, and fast — usually 1–2 weeks end to end.
           </p>
         </div>
         <div className="relative grid md:grid-cols-5 gap-6 md:gap-4">
-          <div className="hidden md:block absolute top-7 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-primary/20 via-primary/50 to-primary/20" />
+          <div className="hidden md:block absolute top-7 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-primary/20 via-primary to-primary/20" />
           {steps.map((s) => (
             <div key={s.n} className="relative text-center">
-              <div className="relative z-10 mx-auto mb-4 size-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold shadow-lg shadow-primary/20">
+              <div className="relative z-10 mx-auto mb-4 size-14 rounded-full bg-gradient-to-br from-primary to-[oklch(0.55_0.18_255)] text-primary-foreground flex items-center justify-center font-bold shadow-lg shadow-primary/30">
                 {s.n}
               </div>
               <h3 className="font-bold mb-2">{s.title}</h3>
@@ -290,7 +482,7 @@ function Process() {
           ))}
         </div>
       </div>
-    </section>
+    </SectionShell>
   );
 }
 
@@ -324,11 +516,14 @@ function FAQ() {
   ];
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className="py-16 md:py-28 px-4 sm:px-6 bg-background">
+    <SectionShell tone="tint">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
+          <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">
+            FAQ
+          </span>
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight mb-4">
-            Frequently Asked Questions
+            Questions, answered
           </h2>
           <p className="text-foreground/70 text-base sm:text-lg">
             Everything you need to know before you apply.
@@ -340,7 +535,11 @@ function FAQ() {
             return (
               <div
                 key={f.q}
-                className="border border-border rounded-2xl bg-card overflow-hidden"
+                className={`border rounded-2xl bg-background overflow-hidden transition-all ${
+                  isOpen
+                    ? "border-primary/30 shadow-lg shadow-primary/5"
+                    : "border-border"
+                }`}
               >
                 <button
                   type="button"
@@ -349,12 +548,18 @@ function FAQ() {
                   aria-expanded={isOpen}
                 >
                   <span className="font-semibold text-base sm:text-lg">{f.q}</span>
-                  <span className="shrink-0 size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                  <span
+                    className={`shrink-0 size-8 rounded-full flex items-center justify-center transition ${
+                      isOpen
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-primary/10 text-primary"
+                    }`}
+                  >
                     {isOpen ? <Minus className="size-4" /> : <Plus className="size-4" />}
                   </span>
                 </button>
                 {isOpen && (
-                  <div className="px-5 pb-5 -mt-1 text-sm sm:text-base text-foreground/75 leading-relaxed">
+                  <div className="px-5 pb-5 -mt-1 text-sm sm:text-base text-foreground/75 leading-relaxed animate-fade-in">
                     {f.a}
                   </div>
                 )}
@@ -363,34 +568,46 @@ function FAQ() {
           })}
         </div>
       </div>
-    </section>
+    </SectionShell>
   );
 }
 
 /* ───────── FINAL CTA ───────── */
 function FinalCTA() {
   return (
-    <section className="py-16 md:py-28 px-4 sm:px-6">
-      <div className="max-w-5xl mx-auto relative overflow-hidden rounded-3xl bg-primary text-primary-foreground p-8 sm:p-12 md:p-16 text-center">
-        <div className="absolute -top-20 -right-20 size-72 bg-white/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-20 -left-20 size-72 bg-accent/20 rounded-full blur-3xl" />
+    <section className="py-16 md:py-28 px-4 sm:px-6 bg-background">
+      <div className="max-w-5xl mx-auto relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-[oklch(0.5_0.2_255)] to-[oklch(0.4_0.18_260)] text-primary-foreground p-8 sm:p-12 md:p-16 text-center">
+        <div className="absolute inset-0 text-white/10 pointer-events-none">
+          <MapGrid />
+        </div>
+        <div className="absolute -top-20 -right-20 size-72 bg-white/15 rounded-full blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 size-72 bg-white/10 rounded-full blur-3xl" />
         <div className="relative">
+          <MapPin className="size-10 mx-auto mb-4 opacity-80" strokeWidth={1.5} />
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight mb-4">
             Ready to build with us?
           </h2>
-          <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8 text-base sm:text-lg">
-            One short form. We respond within a week. Let's create something real together.
+          <p className="text-primary-foreground/85 max-w-xl mx-auto mb-8 text-base sm:text-lg">
+            One short form. We respond within a week. Let's create something
+            real together.
           </p>
-          <a
-            href={FORM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-background text-foreground px-8 py-4 rounded-xl font-semibold hover:bg-background/90 transition shadow-xl"
-          >
-            Apply Now <ArrowRight className="size-4" />
-          </a>
-          <div className="flex items-center justify-center gap-2 mt-6 text-xs text-primary-foreground/70">
-            <Check className="size-3.5" /> Open to students, professionals & remote applicants
+          <div className="flex justify-center">
+            <a
+              href={FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-background text-foreground px-8 py-4 rounded-xl font-semibold shadow-2xl hover:-translate-y-0.5 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] transition-all duration-300 overflow-hidden"
+            >
+              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-primary/10 to-transparent group-hover:translate-x-full transition-transform duration-700" />
+              <span className="relative flex items-center gap-2">
+                Apply Now
+                <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </a>
+          </div>
+          <div className="flex items-center justify-center gap-2 mt-6 text-xs text-primary-foreground/80">
+            <Check className="size-3.5" /> Open to students, professionals &
+            remote applicants
           </div>
         </div>
       </div>
