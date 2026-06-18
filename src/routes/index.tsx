@@ -1026,7 +1026,7 @@ function ConnectVorix() {
 
 
 /* ───────────────── FOOTER ───────────────── */
-function Footer() {
+export function Footer() {
   const cols = [
     {
       title: "Quick Links",
