@@ -86,11 +86,12 @@ export const Route = createFileRoute("/")({
 export function Nav() {
   const [open, setOpen] = useState(false);
   const links = [
-    ["Rent", "#types"],
-    ["Buy & Sell", "#types"],
-    ["Shortlets", "#types"],
-    ["Hostels", "#types"],
-    ["Land", "#types"],
+    ["Rent", "/#types"],
+    ["Buy & Sell", "/#types"],
+    ["Shortlets", "/#types"],
+    ["Hostels", "/#types"],
+    ["Land", "/#types"],
+    ["Join the Team", "/join-the-team"],
   ] as const;
   return (
     <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
