@@ -83,7 +83,7 @@ export const Route = createFileRoute("/")({
 });
 
 /* ───────────────── NAV ───────────────── */
-function Nav() {
+export function Nav() {
   const [open, setOpen] = useState(false);
   const links = [
     ["Rent", "#types"],
