@@ -42,7 +42,6 @@ const FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSfawOwqiWz0-FDYcHr-bAG5W5crekDp25UE_w9MkMIvYs1YiA/viewform?usp=header";
 
 /* Brand palette (modern startup) */
-const NAVY = "#0B1220";
 const BLUE = "#2563EB";
 const CYAN = "#38BDF8";
 
