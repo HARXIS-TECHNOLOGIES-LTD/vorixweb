@@ -88,9 +88,9 @@ function ApplyButton({
     "group relative inline-flex w-full sm:w-auto items-center justify-center gap-2 px-7 py-4 rounded-xl font-semibold transition-all duration-300 overflow-hidden disabled:opacity-60 disabled:cursor-not-allowed";
   const styles =
     variant === "primary"
-      ? `bg-[${BLUE}] text-white shadow-[0_10px_30px_-10px_${BLUE}99] hover:shadow-[0_20px_50px_-12px_${BLUE}cc] hover:-translate-y-0.5`
+      ? "bg-[#2563EB] text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.6)] hover:shadow-[0_20px_50px_-12px_rgba(37,99,235,0.8)] hover:-translate-y-0.5"
       : variant === "dark"
-        ? `bg-[${NAVY}] text-white shadow-lg hover:-translate-y-0.5 hover:shadow-2xl`
+        ? "bg-[#0B1220] text-white shadow-lg hover:-translate-y-0.5 hover:shadow-2xl"
         : "bg-white text-[#0B1220] border border-slate-200 shadow-md hover:shadow-xl hover:-translate-y-0.5 hover:border-[#2563EB]/40";
 
   const content = (
