@@ -427,59 +427,200 @@ function WhyExists() {
   );
 }
 
-/* ───────────────── SEARCH (utility) ───────────────── */
+/* ───────────────── SEARCH (Zillow-inspired) ───────────────── */
 function SearchBar() {
+  const [showFilters, setShowFilters] = useState(false);
+  const [amenities, setAmenities] = useState<string[]>([]);
+  const [verification, setVerification] = useState<string[]>([]);
+
+  const toggle = (list: string[], setList: (v: string[]) => void, val: string) => {
+    setList(list.includes(val) ? list.filter((x) => x !== val) : [...list, val]);
+  };
+
+  const amenityOpts = ["WiFi", "Parking", "Security", "Generator", "Solar", "Furnished", "Laundry", "Study Area", "Gym", "Air Conditioning"];
+  const verifyOpts = ["Verified Listings", "Verified Landlords", "VORIX Certified"];
+
+  const selectCls = "w-full text-sm font-medium bg-transparent outline-none cursor-pointer text-foreground";
+  const fieldCls = "flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-muted/60 transition-colors";
+  const labelCls = "text-[10px] uppercase font-semibold text-muted-foreground tracking-wider";
+
   return (
     <section className="bg-background -mt-12 relative z-10">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="bg-card rounded-2xl shadow-elevated border border-border p-3 md:p-4 text-left">
-          <div className="grid md:grid-cols-[1.3fr_1fr_1fr_auto] gap-2">
-            <div className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted/60 transition-colors">
+          {/* Primary row */}
+          <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr_auto] gap-2">
+            <div className={fieldCls}>
               <MapPin className="size-4 text-primary shrink-0" />
               <div className="flex-1 min-w-0">
-                <div className="text-[10px] uppercase font-semibold text-muted-foreground tracking-wider">
-                  Location
-                </div>
+                <div className={labelCls}>Location</div>
                 <input
-                  placeholder="Lagos, Ibadan, Abuja…"
+                  placeholder="Lagos, Ibadan, Abuja, UNILAG, Lekki..."
                   className="w-full text-sm font-medium bg-transparent outline-none placeholder:text-foreground/40"
                 />
               </div>
             </div>
-            <div className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted/60 transition-colors border-l border-border md:border-l">
+            <div className={`${fieldCls} md:border-l border-border`}>
               <Home className="size-4 text-primary shrink-0" />
               <div className="flex-1 min-w-0">
-                <div className="text-[10px] uppercase font-semibold text-muted-foreground tracking-wider">
-                  Property Type
-                </div>
-                <select className="w-full text-sm font-medium bg-transparent outline-none cursor-pointer">
-                  <option>All Types</option>
-                  <option>Rent</option>
-                  <option>Buy</option>
-                  <option>Shortlet</option>
+                <div className={labelCls}>Category</div>
+                <select className={selectCls}>
+                  <option>Any</option>
+                  <option>Apartment</option>
+                  <option>Studio</option>
+                  <option>Self-contained</option>
                   <option>Hostel</option>
+                  <option>Shared Apartment</option>
+                  <option>Townhouse</option>
+                  <option>Duplex</option>
+                  <option>Detached House</option>
+                  <option>Student Housing</option>
+                  <option>Co-living Space</option>
                 </select>
               </div>
             </div>
-            <div className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-muted/60 transition-colors border-l border-border md:border-l">
+            <div className={`${fieldCls} md:border-l border-border`}>
               <Briefcase className="size-4 text-primary shrink-0" />
               <div className="flex-1 min-w-0">
-                <div className="text-[10px] uppercase font-semibold text-muted-foreground tracking-wider">
-                  Budget
-                </div>
-                <select className="w-full text-sm font-medium bg-transparent outline-none cursor-pointer">
-                  <option>Any range</option>
+                <div className={labelCls}>Budget</div>
+                <select className={selectCls}>
+                  <option>Any Range</option>
                   <option>Under ₦500k</option>
-                  <option>₦500k – ₦2M</option>
-                  <option>₦2M+</option>
+                  <option>₦500k – ₦1M</option>
+                  <option>₦1M – ₦3M</option>
+                  <option>₦3M – ₦5M</option>
+                  <option>₦5M+</option>
                 </select>
               </div>
             </div>
-            <button className="bg-primary text-primary-foreground rounded-lg px-6 py-3 font-semibold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+            <button
+              type="button"
+              className="bg-primary text-primary-foreground rounded-xl px-6 py-3 font-semibold text-sm flex items-center justify-center gap-2 hover:opacity-90 hover:shadow-elevated transition-all"
+            >
               <Search className="size-4" />
-              Search
+              Find Your Next Home
             </button>
           </div>
+
+          {/* Toggle advanced */}
+          <div className="flex items-center justify-between mt-2 px-2">
+            <button
+              type="button"
+              onClick={() => setShowFilters((v) => !v)}
+              className="text-xs font-semibold text-primary hover:underline flex items-center gap-1.5"
+            >
+              <span>{showFilters ? "Hide" : "More"} filters</span>
+              <span className={`inline-block transition-transform ${showFilters ? "rotate-180" : ""}`}>▾</span>
+            </button>
+            <span className="text-[11px] text-muted-foreground hidden sm:inline">AI-powered housing discovery</span>
+          </div>
+
+          {/* Advanced filters */}
+          {showFilters && (
+            <div className="mt-3 pt-4 border-t border-border animate-fade-up">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
+                <div className={fieldCls}>
+                  <Bed className="size-4 text-primary shrink-0" />
+                  <div className="flex-1 min-w-0">
+                    <div className={labelCls}>Bedrooms</div>
+                    <select className={selectCls}>
+                      <option>Any</option><option>Studio</option><option>1 Bedroom</option>
+                      <option>2 Bedrooms</option><option>3 Bedrooms</option><option>4+</option>
+                    </select>
+                  </div>
+                </div>
+                <div className={fieldCls}>
+                  <Bath className="size-4 text-primary shrink-0" />
+                  <div className="flex-1 min-w-0">
+                    <div className={labelCls}>Bathrooms</div>
+                    <select className={selectCls}>
+                      <option>Any</option><option>1</option><option>2</option>
+                      <option>3</option><option>4+</option>
+                    </select>
+                  </div>
+                </div>
+                <div className={fieldCls}>
+                  <GraduationCap className="size-4 text-primary shrink-0" />
+                  <div className="flex-1 min-w-0">
+                    <div className={labelCls}>Rental Type</div>
+                    <select className={selectCls}>
+                      <option>Monthly</option><option>Semester</option><option>Annual</option>
+                      <option>Short Stay</option><option>Long Stay</option>
+                    </select>
+                  </div>
+                </div>
+                <div className={fieldCls}>
+                  <Users className="size-4 text-primary shrink-0" />
+                  <div className="flex-1 min-w-0">
+                    <div className={labelCls}>Occupancy</div>
+                    <select className={selectCls}>
+                      <option>Single</option><option>Shared</option><option>Student</option>
+                      <option>Family</option><option>Professional</option>
+                    </select>
+                  </div>
+                </div>
+                <div className={fieldCls}>
+                  <MapPin className="size-4 text-primary shrink-0" />
+                  <div className="flex-1 min-w-0">
+                    <div className={labelCls}>Move-in Date</div>
+                    <input type="date" className="w-full text-sm font-medium bg-transparent outline-none text-foreground" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Verification */}
+              <div className="mt-4">
+                <div className={`${labelCls} px-2 mb-2 flex items-center gap-1.5`}>
+                  <ShieldCheck className="size-3 text-accent" /> Verification
+                </div>
+                <div className="flex flex-wrap gap-2 px-2">
+                  {verifyOpts.map((v) => {
+                    const active = verification.includes(v);
+                    return (
+                      <button
+                        key={v}
+                        type="button"
+                        onClick={() => toggle(verification, setVerification, v)}
+                        className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-all ${
+                          active
+                            ? "bg-primary text-primary-foreground border-primary"
+                            : "bg-background text-foreground border-border hover:border-primary"
+                        }`}
+                      >
+                        {active && <Check className="size-3 inline mr-1" />}
+                        {v} Only
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Amenities */}
+              <div className="mt-4">
+                <div className={`${labelCls} px-2 mb-2`}>Amenities</div>
+                <div className="flex flex-wrap gap-2 px-2">
+                  {amenityOpts.map((a) => {
+                    const active = amenities.includes(a);
+                    return (
+                      <button
+                        key={a}
+                        type="button"
+                        onClick={() => toggle(amenities, setAmenities, a)}
+                        className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-all ${
+                          active
+                            ? "bg-accent text-accent-foreground border-accent"
+                            : "bg-background text-foreground border-border hover:border-accent"
+                        }`}
+                      >
+                        {active && <Check className="size-3 inline mr-1" />}
+                        {a}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
