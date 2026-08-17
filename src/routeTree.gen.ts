@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as JoinTheTeamRouteImport } from './routes/join-the-team'
+import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as AskRouteImport } from './routes/ask'
 import { Route as IndexRouteImport } from './routes/index'
 
 const JoinTheTeamRoute = JoinTheTeamRouteImport.update({
   id: '/join-the-team',
   path: '/join-the-team',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscoverRoute = DiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AskRoute = AskRouteImport.update({
@@ -32,30 +38,34 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ask': typeof AskRoute
+  '/discover': typeof DiscoverRoute
   '/join-the-team': typeof JoinTheTeamRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ask': typeof AskRoute
+  '/discover': typeof DiscoverRoute
   '/join-the-team': typeof JoinTheTeamRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/ask': typeof AskRoute
+  '/discover': typeof DiscoverRoute
   '/join-the-team': typeof JoinTheTeamRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/ask' | '/join-the-team'
+  fullPaths: '/' | '/ask' | '/discover' | '/join-the-team'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/ask' | '/join-the-team'
-  id: '__root__' | '/' | '/ask' | '/join-the-team'
+  to: '/' | '/ask' | '/discover' | '/join-the-team'
+  id: '__root__' | '/' | '/ask' | '/discover' | '/join-the-team'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AskRoute: typeof AskRoute
+  DiscoverRoute: typeof DiscoverRoute
   JoinTheTeamRoute: typeof JoinTheTeamRoute
 }
 
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/join-the-team'
       fullPath: '/join-the-team'
       preLoaderRoute: typeof JoinTheTeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discover': {
+      id: '/discover'
+      path: '/discover'
+      fullPath: '/discover'
+      preLoaderRoute: typeof DiscoverRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ask': {
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AskRoute: AskRoute,
+  DiscoverRoute: DiscoverRoute,
   JoinTheTeamRoute: JoinTheTeamRoute,
 }
 export const routeTree = rootRouteImport
