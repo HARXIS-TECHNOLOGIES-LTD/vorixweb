@@ -13,6 +13,7 @@ import { Route as JoinTheTeamRouteImport } from './routes/join-the-team'
 import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as AskRouteImport } from './routes/ask'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PropertyPropertyIdRouteImport } from './routes/property.$propertyId'
 
 const JoinTheTeamRoute = JoinTheTeamRouteImport.update({
   id: '/join-the-team',
@@ -34,18 +35,25 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PropertyPropertyIdRoute = PropertyPropertyIdRouteImport.update({
+  id: '/property/$propertyId',
+  path: '/property/$propertyId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ask': typeof AskRoute
   '/discover': typeof DiscoverRoute
   '/join-the-team': typeof JoinTheTeamRoute
+  '/property/$propertyId': typeof PropertyPropertyIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ask': typeof AskRoute
   '/discover': typeof DiscoverRoute
   '/join-the-team': typeof JoinTheTeamRoute
+  '/property/$propertyId': typeof PropertyPropertyIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,25 @@ export interface FileRoutesById {
   '/ask': typeof AskRoute
   '/discover': typeof DiscoverRoute
   '/join-the-team': typeof JoinTheTeamRoute
+  '/property/$propertyId': typeof PropertyPropertyIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/ask' | '/discover' | '/join-the-team'
+  fullPaths:
+    | '/'
+    | '/ask'
+    | '/discover'
+    | '/join-the-team'
+    | '/property/$propertyId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/ask' | '/discover' | '/join-the-team'
-  id: '__root__' | '/' | '/ask' | '/discover' | '/join-the-team'
+  to: '/' | '/ask' | '/discover' | '/join-the-team' | '/property/$propertyId'
+  id:
+    | '__root__'
+    | '/'
+    | '/ask'
+    | '/discover'
+    | '/join-the-team'
+    | '/property/$propertyId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +87,7 @@ export interface RootRouteChildren {
   AskRoute: typeof AskRoute
   DiscoverRoute: typeof DiscoverRoute
   JoinTheTeamRoute: typeof JoinTheTeamRoute
+  PropertyPropertyIdRoute: typeof PropertyPropertyIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +120,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/property/$propertyId': {
+      id: '/property/$propertyId'
+      path: '/property/$propertyId'
+      fullPath: '/property/$propertyId'
+      preLoaderRoute: typeof PropertyPropertyIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +135,7 @@ const rootRouteChildren: RootRouteChildren = {
   AskRoute: AskRoute,
   DiscoverRoute: DiscoverRoute,
   JoinTheTeamRoute: JoinTheTeamRoute,
+  PropertyPropertyIdRoute: PropertyPropertyIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
