@@ -9,8 +9,8 @@ import { describeFilters, matchProperties, parseQuery } from "@/lib/vorix-ai";
 import { useVorix } from "@/lib/vorix-store";
 
 export const Route = createFileRoute("/ask")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    q: typeof search.q === "string" ? search.q : "",
+  validateSearch: (search: Record<string, unknown>): { q?: string } => ({
+    q: typeof search.q === "string" && search.q ? search.q : undefined,
   }),
   head: () => ({
     meta: [
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/ask")({
 });
 
 function AskPage() {
-  const { q } = Route.useSearch();
+  const { q = "" } = Route.useSearch();
   const navigate = useNavigate();
   const { addSearch } = useVorix();
 
