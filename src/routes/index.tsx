@@ -1,4 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { SiteNav } from "@/components/site-nav";
+import { SiteFooter } from "@/components/site-footer";
 import { useState } from "react";
 import { toast } from "sonner";
 import logo from "@/assets/vorix-logo.png";
@@ -1449,7 +1451,12 @@ function PlatformPreview() {
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Nav />
+      <SiteNav />
+      <div className="bg-accent/10 border-b border-border px-4 py-3 text-center text-sm">
+        <Link to="/ask" search={{ q: "" }} className="font-semibold text-primary hover:underline">
+          Try the live MVP demo — Ask VORIX for a verified home →
+        </Link>
+      </div>
       <main>
         <Hero />
         <SearchBar />
@@ -1467,7 +1474,7 @@ function Index() {
         <ConnectVorix />
 
       </main>
-      <Footer />
+      <SiteFooter />
     </div>
   );
 }

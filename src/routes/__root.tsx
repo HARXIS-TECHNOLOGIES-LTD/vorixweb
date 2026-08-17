@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
+import { VorixProvider } from "@/lib/vorix-store";
 
 import appCss from "../styles.css?url";
 
@@ -165,7 +166,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <VorixProvider>
+        <Outlet />
+      </VorixProvider>
       <Toaster position="top-center" richColors />
     </QueryClientProvider>
   );

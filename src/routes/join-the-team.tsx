@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useMemo } from "react";
-import { Nav, Footer } from "./index";
+import { SiteNav } from "@/components/site-nav";
+import { SiteFooter } from "@/components/site-footer";
 import {
   Rocket,
   Heart,
@@ -287,7 +288,7 @@ function JoinTheTeam() {
           100% { transform: translateX(100%); }
         }
       `}</style>
-      <Nav />
+      <SiteNav />
       <Hero />
       <WhyJoin />
       <OpenRoles />
@@ -297,7 +298,7 @@ function JoinTheTeam() {
       <ApplicationForm />
       <FAQ />
       <FinalCTA />
-      <Footer />
+      <SiteFooter />
     </div>
   );
 }
