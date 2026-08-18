@@ -209,21 +209,19 @@ function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 mb-14">
-          <a
-            href="https://chat.whatsapp.com/IC1tNbguLmx6ZgO7j09r7W"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/discover"
             className="inline-flex items-center justify-center gap-2 bg-accent text-accent-foreground font-semibold px-7 py-3.5 rounded-lg hover:opacity-90 transition-all hover:-translate-y-0.5 shadow-elevated w-full sm:w-auto"
           >
-            Join the Community
+            Find Your Property
             <ArrowRight className="size-4" />
-          </a>
-          <a
-            href="#vision"
+          </Link>
+          <Link
+            to="/why-vorix"
             className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 backdrop-blur-sm border border-white/20 font-semibold px-7 py-3.5 rounded-lg transition-colors w-full sm:w-auto"
           >
-            See Our Vision
-          </a>
+            Why VORIX?
+          </Link>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto">
