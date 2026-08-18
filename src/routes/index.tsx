@@ -1515,6 +1515,7 @@ function Index() {
 
         <Steps />
         <Featured />
+        <WhoWeServe />
         <Why />
         <Landlord />
         <Survey />
