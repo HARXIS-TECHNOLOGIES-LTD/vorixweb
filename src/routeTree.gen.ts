@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WhyVorixRouteImport } from './routes/why-vorix'
 import { Route as JoinTheTeamRouteImport } from './routes/join-the-team'
 import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as DashboardRouteImport } from './routes/dashboard'
@@ -16,6 +17,11 @@ import { Route as AskRouteImport } from './routes/ask'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PropertyPropertyIdRouteImport } from './routes/property.$propertyId'
 
+const WhyVorixRoute = WhyVorixRouteImport.update({
+  id: '/why-vorix',
+  path: '/why-vorix',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const JoinTheTeamRoute = JoinTheTeamRouteImport.update({
   id: '/join-the-team',
   path: '/join-the-team',
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRoute
   '/discover': typeof DiscoverRoute
   '/join-the-team': typeof JoinTheTeamRoute
+  '/why-vorix': typeof WhyVorixRoute
   '/property/$propertyId': typeof PropertyPropertyIdRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardRoute
   '/discover': typeof DiscoverRoute
   '/join-the-team': typeof JoinTheTeamRoute
+  '/why-vorix': typeof WhyVorixRoute
   '/property/$propertyId': typeof PropertyPropertyIdRoute
 }
 export interface FileRoutesById {
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRoute
   '/discover': typeof DiscoverRoute
   '/join-the-team': typeof JoinTheTeamRoute
+  '/why-vorix': typeof WhyVorixRoute
   '/property/$propertyId': typeof PropertyPropertyIdRoute
 }
 export interface FileRouteTypes {
@@ -80,6 +89,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/discover'
     | '/join-the-team'
+    | '/why-vorix'
     | '/property/$propertyId'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -88,6 +98,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/discover'
     | '/join-the-team'
+    | '/why-vorix'
     | '/property/$propertyId'
   id:
     | '__root__'
@@ -96,6 +107,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/discover'
     | '/join-the-team'
+    | '/why-vorix'
     | '/property/$propertyId'
   fileRoutesById: FileRoutesById
 }
@@ -105,11 +117,19 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRoute
   DiscoverRoute: typeof DiscoverRoute
   JoinTheTeamRoute: typeof JoinTheTeamRoute
+  WhyVorixRoute: typeof WhyVorixRoute
   PropertyPropertyIdRoute: typeof PropertyPropertyIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/why-vorix': {
+      id: '/why-vorix'
+      path: '/why-vorix'
+      fullPath: '/why-vorix'
+      preLoaderRoute: typeof WhyVorixRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/join-the-team': {
       id: '/join-the-team'
       path: '/join-the-team'
@@ -161,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRoute,
   DiscoverRoute: DiscoverRoute,
   JoinTheTeamRoute: JoinTheTeamRoute,
+  WhyVorixRoute: WhyVorixRoute,
   PropertyPropertyIdRoute: PropertyPropertyIdRoute,
 }
 export const routeTree = rootRouteImport

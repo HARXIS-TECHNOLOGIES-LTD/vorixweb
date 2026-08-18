@@ -57,6 +57,7 @@ export function SiteFooter() {
             <ul className="space-y-3 text-sm text-primary-foreground/70">
               <li><Link to="/discover" className="hover:text-accent transition-colors">Discover homes</Link></li>
               <li><Link to="/ask" className="hover:text-accent transition-colors">Ask VORIX</Link></li>
+              <li><Link to="/why-vorix" className="hover:text-accent transition-colors">Why VORIX</Link></li>
               <li><Link to="/dashboard" className="hover:text-accent transition-colors">Saved & viewings</Link></li>
               <li><Link to="/join-the-team" className="hover:text-accent transition-colors">Join the team</Link></li>
             </ul>

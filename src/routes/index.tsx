@@ -209,21 +209,19 @@ function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 mb-14">
-          <a
-            href="https://chat.whatsapp.com/IC1tNbguLmx6ZgO7j09r7W"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/discover"
             className="inline-flex items-center justify-center gap-2 bg-accent text-accent-foreground font-semibold px-7 py-3.5 rounded-lg hover:opacity-90 transition-all hover:-translate-y-0.5 shadow-elevated w-full sm:w-auto"
           >
-            Join the Community
+            Find Your Property
             <ArrowRight className="size-4" />
-          </a>
-          <a
-            href="#vision"
+          </Link>
+          <Link
+            to="/why-vorix"
             className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 backdrop-blur-sm border border-white/20 font-semibold px-7 py-3.5 rounded-lg transition-colors w-full sm:w-auto"
           >
-            See Our Vision
-          </a>
+            Why VORIX?
+          </Link>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto">
@@ -1448,6 +1446,55 @@ function PlatformPreview() {
   );
 }
 
+function WhoWeServe() {
+  const groups = [
+    { icon: Home, name: "Renters", text: "Discover homes that match real needs." },
+    { icon: GraduationCap, name: "Students", text: "Find housing close to school, on budget." },
+    { icon: Building2, name: "Landlords", text: "List properties and reach serious renters." },
+    { icon: Users, name: "Agents", text: "Showcase listings and win qualified enquiries." },
+    { icon: Briefcase, name: "Providers", text: "Turn inventory into discoverable opportunities." },
+  ];
+  return (
+    <section className="py-16 sm:py-24 bg-surface">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <span className="inline-flex items-center gap-2 rounded-full bg-primary-soft text-primary px-3 py-1.5 text-xs font-bold uppercase tracking-wider mb-4">
+            Who we serve
+          </span>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-balance">
+            One Platform. Multiple Stakeholders. One Better Housing Ecosystem.
+          </h2>
+          <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
+            VORIX connects renters, students, agents, landlords and property providers through a
+            smarter, more transparent and AI-powered housing experience.
+          </p>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {groups.map((g) => (
+            <div key={g.name} className="rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-elevated)]">
+              <span className="inline-flex size-10 items-center justify-center rounded-xl bg-primary text-primary-foreground mb-4">
+                <g.icon className="size-5" />
+              </span>
+              <h3 className="font-bold text-foreground mb-1.5">{g.name}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{g.text}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-10 text-center">
+          <Link
+            to="/why-vorix"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary text-primary-foreground px-6 py-3.5 font-semibold hover:opacity-90 transition-opacity"
+          >
+            See the full stakeholder breakdown
+            <ArrowRight className="size-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -1468,6 +1515,7 @@ function Index() {
 
         <Steps />
         <Featured />
+        <WhoWeServe />
         <Why />
         <Landlord />
         <Survey />

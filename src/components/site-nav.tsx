@@ -8,6 +8,7 @@ const LINKS = [
   { to: "/", label: "Home" },
   { to: "/discover", label: "Discover" },
   { to: "/ask", label: "Ask VORIX" },
+  { to: "/why-vorix", label: "Why VORIX" },
   { to: "/dashboard", label: "Dashboard" },
   { to: "/join-the-team", label: "Join the Team" },
 ] as const;
